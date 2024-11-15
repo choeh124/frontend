@@ -5,6 +5,9 @@ export default function Post(){
     return(
         <div>
             <Header></Header>
+            <div>
+            
+            </div>
             <Footer></Footer>
         </div>
         

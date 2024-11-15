@@ -3,7 +3,9 @@ import Post from './component/posts/Post.jsx';
 
 function App() {
   return (
-    <App></App>
+    <div>
+      <Post/>
+    </div>
   );
 }
 
