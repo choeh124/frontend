@@ -1,0 +1,11 @@
+.cardList div{
+    width: 714px;
+    border: solid 1px #D4D2E3;
+    border-radius: 24px;
+    padding: 36px 0px 36px 29px; 
+    margin-bottom: 11px;
+}
+
+.cardList :last-child{
+    margin-bottom: 0px;
+}
