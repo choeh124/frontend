@@ -4,3 +4,18 @@ nav{
     justify-content: space-between;
     align-items: center;
 }
+
+.buttonBox{
+    align-items: center;
+}
+
+button {
+    background-color: none; /* Green */
+    border: none;
+    color: #0094FF;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
