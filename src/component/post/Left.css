@@ -1,0 +1,26 @@
+/* .PostComment{
+    font font-family: "DM Sans", sans-serif;
+} */
+.Lcontent{
+    margin-right: 62px;
+} 
+
+.ImgBox{
+    width: 396px;
+    height: 396px;
+    border-radius: 10px;
+    background-color: aqua;
+}
+
+.PostComment h2{
+    font-size: 24px;
+    font-weight: bold;
+    color: #5D5A88;
+    line-height: 34px;
+}
+
+.PostComment p{
+    font-size: 18px;
+    color: #A0A3BD;
+    line-height: 30px;
+}

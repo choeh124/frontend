@@ -1,0 +1,34 @@
+header{
+    padding: 0 24px;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonBox{
+    align-items: center;
+}
+
+.buttonBox button{
+    background-color: white;
+    border: none;
+    color: #0094FF;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 16px;
+}
+
+.buttonBox button.blue{
+    background-color: #0094FF;
+    color: white;
+    padding: 12px 12px;
+    border-radius: 8px;
+    margin-right: 0px;
+}
