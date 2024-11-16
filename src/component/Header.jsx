@@ -2,7 +2,7 @@ import './Header.css'
 
 export default function Header(){
     return(
-        <div>
+        <header>
             <nav>
                 <h1>짧은 산책</h1>
                 <div className='buttonBox'>
@@ -11,7 +11,7 @@ export default function Header(){
                     <button className='blue'>My Page<img src="" alt="" /></button>
                 </div>
             </nav>
-        </div>
+        </header>
         
     )
 }

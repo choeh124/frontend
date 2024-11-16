@@ -1,6 +1,8 @@
 import "./App.css";
-import Post from "./component/posts/Post.jsx";
 import Login from "./component/users/Login.jsx";
+import Posts from "./component/posts/Posts.jsx";
+import Post from "./component/post/Post.jsx";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -8,8 +10,9 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/posts" element={<Post />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/post/:id" element={<Post />} />
         </Routes>
       </Router>
     </div>
