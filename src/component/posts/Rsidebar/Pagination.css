@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.pageList{
+    display: flex;
+    padding: 0 14px;
+}
+
+
+
+.pageList div{
+    width: 11px;
+    height: 11px;
+    border-radius: 6px;
+    background-color: #DCDCDC;
+    margin-right: 10px;
+}
+
+.pageList :first-child{
+    background-color: #0094FF;
+}
+
+.pageList :last-child{
+    margin-right: 0px;
+}

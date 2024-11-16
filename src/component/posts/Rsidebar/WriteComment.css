@@ -1,0 +1,25 @@
+.WriteContent{
+    margin-bottom: 24px;
+}
+
+.WriteContent input
+{
+    width: 601px;
+    height: 53px;
+    border: solid 1px #D4D2E3;
+    border-radius: 24px;
+    padding-left: 32px;
+    margin-right: 11px;
+}
+
+.WriteContent button
+{   
+    width: 101px;
+    height: 53px;
+    background-color: #0094FF;
+    border-radius: 24px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
