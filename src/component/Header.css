@@ -9,8 +9,8 @@ nav{
     align-items: center;
 }
 
-button {
-    background-color: none; /* Green */
+.buttonBox button{
+    background-color: white;
     border: none;
     color: #0094FF;
     padding: 8px 12px;
@@ -18,4 +18,11 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    margin-right: 16px;
+}
+
+.buttonBox buttons.blue{
+    background-color: #0094FF;
+    color: white;
+    margin-right: 0px;
 }
