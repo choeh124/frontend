@@ -8,7 +8,7 @@ import Pagination from "./Rsidebar/Pagination";
 
 export default function Post(){
     return(
-        <div>
+        <div >
             <Header></Header>
             <div className="main-content">
                 <Left></Left>
