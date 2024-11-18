@@ -8,7 +8,7 @@ export default function Header(){
                 <div className='buttonBox'>
                     <button>채팅</button>
                     <button>로그아웃</button>
-                    <button className='blue'>My Page<img src="" alt="" /></button>
+                    <button className='blue' >My Page </button>
                 </div>
             </nav>
         </header>

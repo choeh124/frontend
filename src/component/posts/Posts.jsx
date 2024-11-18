@@ -1,14 +1,16 @@
 import Header from "../Header";
 import Footer from "../Footer";
-import NoticeBoard from "./NoticeBorder";
+import Pagination from "../post/Pagination";
+import CardList from "./PostsCradList";
 
 export default function Posts(){
     return(
         <div className="posts">
             <Header></Header>
-            <div className="cardList">
-                <NoticeBoard></NoticeBoard>
+            <div className="Board">
+                <CardList></CardList>
             </div>
+            <Pagination></Pagination>
             <Footer></Footer>
         </div>
     )

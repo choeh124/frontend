@@ -2,7 +2,7 @@ import "./CommentList.css"
 
 export default function CommentList(){
     return(
-        <div className="cardList">
+        <div className="commenList">
             <div>
                 <h3>👟  seoulsoup 님이 다음 산책에 당첨되셨습니다! 짧은산책 후기를 부탁드려요!</h3>
                 <p>운영진</p>
