@@ -4,7 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import Left from "./Left";
 import Right from "./Right";
-import Pagination from "./Rsidebar/Pagination";
+import Pagination from "./Pagination";
 
 export default function Post(){
     return(
