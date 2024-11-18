@@ -1,14 +1,14 @@
 import Header from "../Header";
 import Footer from "../Footer";
 import Pagination from "../post/Pagination";
-import CardList from "./PostsCradList";
+import PostsCardList from "./PostsCradList";
 
 export default function Posts(){
     return(
         <div className="posts">
             <Header></Header>
             <div className="Board">
-                <CardList></CardList>
+                <PostsCardList></PostsCardList>
             </div>
             <Pagination></Pagination>
             <Footer></Footer>
