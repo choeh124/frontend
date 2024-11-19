@@ -2,6 +2,8 @@ import Footer from "../Footer";
 import Header from "../Header";
 import "./SignUp.css";
 
+
+
 export default function SignUp() {
   return (
     <div>
@@ -10,7 +12,7 @@ export default function SignUp() {
       <div className="form-container">
         <h1>회원가입</h1>
         <div className = "form-row">
-        <label>E-mail</label><input type="text"></input>
+        <label>E-mail</label><input type="text" id="email"></input>
         <button>전송</button>
         </div>
         <div className = "form-row">
@@ -18,15 +20,15 @@ export default function SignUp() {
         <button>인증</button>
         </div>
         <div className = "form-row">
-        <label>닉네임</label><input type="text"></input>
+        <label>닉네임</label><input type="text" id="nickname"></input>
         </div>
         <div className = "form-row">
-        <label>비밀번호</label><input type="text"></input>
+        <label>비밀번호</label><input type="password" id="password"></input>
         </div>
         <div className = "form-row">
-        <label>비밀번호 확인</label><input type="text"></input>
+        <label>비밀번호 확인</label><input type="password" id="confirm"></input>
         </div>
-        <button className="special-button">이메일 회원가입</button>
+        <button className="special-button" onClick="">이메일 회원가입</button>
       </div>
       </div>
       <Footer />
