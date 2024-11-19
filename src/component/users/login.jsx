@@ -3,9 +3,6 @@ import Header from "../Header";
 import "./Login.css";
 
 export default function Login() {
-<<<<<<< HEAD
-  return <div> login  </div>;
-=======
   return <div>
     <Header/>
           <div className="login-container">
@@ -21,5 +18,4 @@ export default function Login() {
             </div>
             <Footer/>
           </div>;
->>>>>>> 5772bef584c85700175ab54409acbb825179f2a1
 }
