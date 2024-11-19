@@ -5,7 +5,7 @@ import Post from "./component/post/Post.jsx";
 import PostWrite from "./component/postWrite/PostWrite.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import SignUp from "./component/users/SignUp.jsx";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:id" element={<Post />} />
-          <Route path="/postwrite" element={<PostWrite />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </Router>
     </div>
