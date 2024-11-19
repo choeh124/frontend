@@ -2,13 +2,15 @@ import './WriteText.css'
 
 export default function WriteText(){
     return(
-        <div>
+        <div className='WriteText'>
             <form action="">
-                <input type="text" placeholder="제목을 입력해 주세요" />
-                <input type="text" placeholder="본문을 입력해 주세요" />
-                <div>
-                    <button>취소</button>
-                    <button>완료</button>
+                <div className='text-box'>
+                    <input type="text" placeholder="제목을 입력해 주세요" />
+                    <textarea className='content' type="text" placeholder="본문을 입력해 주세요"></textarea>
+                    <div className='write-button-box'>
+                        <button>취소</button>
+                        <button>완료</button>
+                    </div>
                 </div>
             </form>
         </div>

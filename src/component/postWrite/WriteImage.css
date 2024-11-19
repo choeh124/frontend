@@ -1,38 +1,46 @@
-.WriteImage{}
-h2{
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    color: #5D5A88;
-}
-
-.WimageBox{
-    position: relative;
-    width: 396px;
-    height: 396px;
-    border-radius: 10px;
-    background-color: #D9D9D9;
-}
-.WimageBox img{}
-.WimageBox p{
-    font-size: 18px;
-    font-style: bold;
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0;
-    transform: translate(-50%, -50%);
-}
-
-.WriteImage .WimageInfo{
+.WriteImage {
+    width: 100%;
+    max-width: 300px; /* 이미지 박스의 최대 크기 제한 */
     display: flex;
-    align-items: center;
-    width: 396px;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
 }
-.WriteImage .WimageInfo p{
-    font-size: 20;
-    /* line-height: 30; */
-    color: #5D5A88;
+
+.WimageBox {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+ 
+}
+
+.WimageBox img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+
+    object-fit: cover;
+}
+
+.WimageInfo {
+    font-size: 14px;
+
+}
+
+@media (max-width: 768px) {
+    .WimageBox {
+        height: 180px; /* 화면 크기 작아질 때 박스 높이 조정 */
+    }
+}
+
+@media (max-width: 480px) {
+    .WimageInfo {
+        font-size: 12px; /* 모바일에서 텍스트 크기 축소 */
+    }
 }
