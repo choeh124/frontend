@@ -1,3 +1,4 @@
+import './WriteText.css'
 
 export default function WriteText(){
     return(
