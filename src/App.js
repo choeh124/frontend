@@ -5,7 +5,7 @@ import Post from "./component/post/Post.jsx";
 import PostWrite from "./component/postWrite/PostWrite.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PostWrite from "./component/postWrite/PostWrite.jsx";
+
 
 function App() {
   return (
