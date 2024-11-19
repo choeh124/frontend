@@ -2,6 +2,7 @@ import "./App.css";
 import Login from "./component/users/Login.jsx";
 import Posts from "./component/posts/Posts.jsx";
 import Post from "./component/post/Post.jsx";
+import PostWrite from "./component/postWrite/PostWrite.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./component/users/SignUp.jsx";
