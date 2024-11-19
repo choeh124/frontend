@@ -1,7 +1,7 @@
 import Header from "../Header"
 import Footer from "../Footer"
-import WriteImage from "./writeImage"
-import WriteText from "./writeText"
+import WriteImage from "./WriteImage"
+import WriteText from "./WriteText"
 
 export default function PostWrite(){
     return(
