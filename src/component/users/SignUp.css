@@ -75,3 +75,8 @@ h1{
     color: #5D5A88;
 }
 
+.special-button {
+    margin-left: auto; /* 오른쪽 정렬 */
+    margin-right: 0;
+}
+

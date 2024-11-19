@@ -26,9 +26,7 @@ export default function SignUp() {
         <div className = "form-row">
         <label>비밀번호 확인</label><input type="text"></input>
         </div>
-        
-        <button>이메일 회원가입</button>
-      
+        <button className="special-button">이메일 회원가입</button>
       </div>
       </div>
       <Footer />
