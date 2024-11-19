@@ -1,5 +1,6 @@
 header{
     padding: 0 24px;
+    border-bottom: solid 1px #E2E8F0;
 }
 
 nav{
@@ -10,10 +11,14 @@ nav{
 }
 
 .buttonBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
 }
 
 .buttonBox button{
+
     background-color: white;
     border: none;
     color: #0094FF;
@@ -31,4 +36,10 @@ nav{
     padding: 12px 12px;
     border-radius: 8px;
     margin-right: 0px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap:10px
 }
+

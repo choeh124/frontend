@@ -1,0 +1,31 @@
+
+
+.PostsCard div{
+    padding: 16px 22px;
+    border: solid 1px #D4D2E3;
+    border-radius: 24px;
+    flex: 1 0 21%; /* explanation below */
+     margin: 5px;
+}
+
+.PostsCard img{
+    width: 336.41px;
+    height: 198.59px;
+    border-radius: 24px;
+    background-color: antiquewhite;
+
+}
+
+
+.PostsCard h3{
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: bold;
+    color: #5D5A88;
+}
+
+.PostsCard p{
+    font-size: 18px;
+    line-height: 30px;
+    color: #A0A3BD;
+}

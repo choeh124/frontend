@@ -1,4 +1,6 @@
 footer{
+    margin: 60px auto 35px auto;
+    width: 1440px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,4 +15,19 @@ footer div{
 
 footer div p{
     padding-left: 10px;
+}
+
+footer gnb button {
+    background-color: white;
+    border: none;
+    color: #475569;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 24px; 
+}
+
+footer gnb button:last-child{
+    margin-right: 0px;
 }

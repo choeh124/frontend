@@ -1,0 +1,9 @@
+.PostsCardList{
+    margin: 65px auto;
+    width: 1235.38px;
+    /* height: 719.98px; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
