@@ -12,7 +12,7 @@
 .form-container {
     display: flex;
     flex-direction: column; /* 각 항목을 세로로 나열 */
-    gap: 20px; /* 항목 사이에 간격 */
+    gap: 10px; /* 항목 사이에 간격 */
     border: 1px solid #D4D2E3; /* 테두리 설정 */
     border-radius: 24px; /* 테두리 둥글게 */
     align-items: flex-start;
@@ -27,21 +27,14 @@
 .form-row {
     display: flex;
     flex-direction: row; /* 각 항목을 가로로 나열 */
-    gap: 20px; /* 항목 사이에 간격 */
-}
-
-/* 각 항목 설정 */
-.form-item {
-    display: flex;
-    align-items: center; /* 텍스트와 입력 필드를 세로로 정렬 */
-    gap: 10px; /* 항목 사이에 간격 */
+    gap: 5px; /* 항목 사이에 간격 */
 }
 
 /* 레이블 스타일 */
 label {
     font-size: 14px;
     color: #42ADFB; /* 레이블 색상 설정 */
-    width: 70px;
+    width: 120px;
 }
 
 /* 입력 필드 스타일 */
@@ -51,10 +44,11 @@ input {
     width: 200px; /* 너비를 지정하여 균일하게 보이도록 */
     border: 1px solid #ccc; /* 입력 필드의 테두리 */
     border-radius: 4px; /* 입력 필드 테두리 둥글게 */
+    height: 17px;
 }
 
 /* 버튼 스타일 */
-button {
+.form-container  button {
     padding: 5px 10px;
     font-size: 14px;
     cursor: pointer;
@@ -62,10 +56,12 @@ button {
     border-radius: 4px; /* 버튼 둥글게 */
     background-color: #fff; /* 버튼 배경색 */
     color: #42ADFB; /* 버튼 텍스트 색상 */
+    height: 28px;
+    margin-left: 10px;
 }
 
 /* 버튼 호버 효과 */
-button:hover {
+.form-container  button:hover {
     background-color: #42ADFB; /* 버튼 배경 색상 변경 */
     color: white; /* 버튼 텍스트 색상 변경 */
 }
@@ -76,7 +72,8 @@ h1{
 }
 
 .special-button {
-    margin-left: auto; /* 오른쪽 정렬 */
-    margin-right: 0;
+    margin-top: 20px;
+    height: 40px;
+   width: 100%;
 }
 
