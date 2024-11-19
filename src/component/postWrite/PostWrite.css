@@ -1,0 +1,7 @@
+.PostWrite{
+    display: flex;
+    flex: 1;
+    /* overflow: hidden; 검색 영역에만 스크롤이 생기도록 */
+    /* width: 1210px; */
+    /* margin: 93px auto 68px auto; */
+}

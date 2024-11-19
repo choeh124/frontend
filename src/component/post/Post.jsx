@@ -1,5 +1,3 @@
-// git pull origin main 
-
 import Header from "../Header";
 import Footer from "../Footer";
 import Left from "./Left";
