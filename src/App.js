@@ -15,7 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:id" element={<Post />} />
-          <Route path="/wite" element={<PostWrite />} />
+          <Route path="/postwrite" element={<PostWrite />} />
         </Routes>
       </Router>
     </div>
