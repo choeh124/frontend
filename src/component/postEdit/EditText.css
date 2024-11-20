@@ -1,10 +1,10 @@
-.WriteText {
+.EditText {
     width: 100%;
     max-width: 500px;
 
 }
 
-.text-box {
+.EditText .text-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
