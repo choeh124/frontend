@@ -7,264 +7,259 @@
     <style>
       #map_div {
         width: 280px;
-        height: 280px;
+        height: 100%;
       }
       #result {
         margin-top: 20px;
       }
     </style>
-    <!-- Include Tmap JavaScript API -->
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=REACT_APP_TMAP_API_KEY"></script>
   </head>
   <body>
     <div id="map_div"></div>
-    <p id="result"></p>
     <input id="address" />
     <button id="drawLineBtn">경로 그리기</button>
+    <p id="result"></p>
+    <div id="route"></div>
 
     <script>
-      const { Tmapv2 } = window;
-
-      let map;
-      let marker_s, marker_e;
-      let drawInfoArr = [];
-      let resultdrawArr = [];
-
-      async function gpt(address) {
-        const keyRespnose = await fetch("http://127.0.0.1:8000/api/key/gpt");
-        const keyResult = await keyRespnose.json();
-        const key = keyResult.gptKey;
-        const promptData = {
-          messages: [
-            {
-              role: "system",
-              content:
-                "너는 주어진 문장을 해석해서 도로명주소만을 배열에 담아 json으로 감싸 출력하는 AI야.",
-            },
-            {
-              role: "user",
-              content: `${address}에서 출발하고 끝나는 총 3km의 왕복 산책 코스의 출발지와 중간지점 5개와 도착지의 도로명주소를 배열에 담아 줘.`,
-            },
-          ],
-        };
-        const gptResponse = await fetch(
-          "https://warme-m3p2wioi-francecentral.cognitiveservices.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2024-08-01-preview",
-          {
-            method: "POST",
-            headers: { "api-key": key, "Content-Type": "application/json" },
-            body: JSON.stringify(promptData),
-          }
-        );
-        const gptResult = await gptResponse.json();
-        const result = JSON.parse(gptResult.choices[0].message.content);
-        return result;
-      }
-
-      function initTmap() {
-        const mapDiv = document.getElementById("map_div");
-
-        if (!mapDiv.firstChild) {
-          map = new Tmapv2.Map("map_div", {
-            center: new Tmapv2.LatLng(37.566481622437934, 126.98502302169841),
-            width: "280px",
-            height: "280px",
-            zoom: 15,
-          });
-        }
-      }
-
-      // Fetch route data asynchronously
-      async function fetchRouteData() {
+      try {
+        const { Tmapv2 } = window;
         const headers = { appKey: "REACT_APP_TMAP_API_KEY" };
-        const requestData = {
-          startX: "126.983937",
-          startY: "37.564991",
-          endX: "126.988940",
-          endY: "37.566158",
-          reqCoordType: "WGS84GEO",
-          resCoordType: "EPSG3857",
-          startName: "출발지",
-          endName: "도착지",
-        };
+        let map;
+        let marker_s, marker_e;
+        let drawInfoArr = [];
+        let resultdrawArr = [];
+        let intermediatePoints = [];
+        let geocoder;
+        let addresses = [];
 
-        try {
-          const response = await fetch(
-            "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
+        // GPT API 호출 및 주소 분석
+        async function gpt(address) {
+          initTmap();
+          drawInfoArr = [];
+          resultdrawArr = [];
+          intermediatePoints = [];
+          addresses = [];
+          const keyRespnose = await fetch("http://127.0.0.1:8000/api/key/gpt");
+          const keyResult = await keyRespnose.json();
+          const key = keyResult.gptKey;
+          const promptData = {
+            messages: [
+              {
+                role: "system",
+                content:
+                  "너는 주어진 문장을 해석해서 도로명주소만을 배열에 담아 json으로 감싸 출력하는 AI야.",
+              },
+              {
+                role: "user",
+                content: `${address}에서 출발하고 끝나는 총 3km의 왕복 산책 코스의 출발지 1개의 도로명주소와 중간지점 5개 도로명주소를 배열에 담아서 data라는 key를 가진 json에 넣어 줘.`,
+              },
+            ],
+          };
+          const gptResponse = await fetch(
+            "https://warme-m3p2wioi-francecentral.cognitiveservices.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview",
             {
               method: "POST",
-              headers: headers,
-              body: JSON.stringify(requestData),
+              headers: { "api-key": key, "Content-Type": "application/json" },
+              body: JSON.stringify(promptData),
             }
           );
+          const gptResult = await gptResponse.json();
+          const cleanedResult = gptResult.choices[0].message.content
+            .replace(/^```json\n/, "")
+            .replace(/\n```$/, "")
+            .trim();
+          const result = await JSON.parse(cleanedResult);
 
-          const data = await response.json();
-
-          if (response.ok) {
-            processRouteData(data);
-          } else {
-            throw new Error("Failed to fetch route data");
-          }
-        } catch (error) {
-          console.log("Error:", error);
+          // geocoding 처리 후 경로 그리기
+          await Promise.all(
+            result.data.map((addressStr) => {
+              return new Promise((resolve) => {
+                setTimeout(async () => {
+                  await geocoding(addressStr);
+                  resolve(); // geocoding 완료 후 resolve
+                }, 300);
+              });
+            })
+          ).finally(() => {
+            // 모든 geocoding이 완료된 후 경로 요청
+            fetchRouteData();
+          });
         }
-      }
 
-      // Process and display the route data
-      function processRouteData(responseData) {
-        const resultData = responseData.features;
-
-        const tDistance = `총 거리 : ${(
-          resultData[0].properties.totalDistance / 1000
-        ).toFixed(1)}km,`;
-        const tTime = ` 총 시간 : ${(
-          resultData[0].properties.totalTime / 60
-        ).toFixed(0)}분`;
-        document.querySelector("#result").innerHTML = tDistance + tTime;
-
-        // Clear existing markers and polylines
-        resultdrawArr.forEach((marker) => marker.setMap(null));
-        resultdrawArr = [];
-        drawInfoArr = [];
-
-        resultData.forEach((feature) => {
-          const { geometry, properties } = feature;
-          if (geometry.type === "LineString") {
-            geometry.coordinates.forEach((coordinate) => {
-              const latlng = new Tmapv2.Point(coordinate[0], coordinate[1]);
-              const convertPoint =
-                new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
-              const convertChange = new Tmapv2.LatLng(
-                convertPoint._lat,
-                convertPoint._lng
-              );
-              drawInfoArr.push(convertChange);
-            });
-          } else {
-            let markerImg = "";
-            let size;
-
-            if (properties.pointType === "S") {
-              markerImg = "/upload/tmap/marker/pin_r_m_s.png";
-              size = new Tmapv2.Size(24, 38);
-            } else if (properties.pointType === "E") {
-              markerImg = "/upload/tmap/marker/pin_r_m_e.png";
-              size = new Tmapv2.Size(24, 38);
-            } else {
-              markerImg = "http://topopen.tmap.co.kr/imgs/point.png";
-              size = new Tmapv2.Size(8, 8);
+        // 주소를 좌표로 변환
+        async function geocoding(address) {
+          addresses.push(address);
+          const response = await fetch(
+            `https://apis.openapi.sk.com/tmap/geo/fullAddrGeo?addressFlag=F02&coordType=WGS84GEO&version=1&fullAddr=${address}&page=1&count=1`,
+            {
+              method: "GET",
+              headers,
             }
+          );
+          const result = await response.json();
+          const data = {
+            x: result.coordinateInfo.coordinate[0].newLat,
+            y: result.coordinateInfo.coordinate[0].newLon,
+          };
+          intermediatePoints.push(new Tmapv2.LatLng(data.x, data.y));
+        }
 
-            const latlon = new Tmapv2.Point(
-              geometry.coordinates[0],
-              geometry.coordinates[1]
-            );
-            const convertPoint =
-              new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlon);
+        // Tmap 지도 초기화
+        function initTmap() {
+          const mapDiv = document.getElementById("map_div");
 
-            const routeInfoObj = {
-              markerImage: markerImg,
-              lng: convertPoint._lng,
-              lat: convertPoint._lat,
-            };
-
-            const marker_p = new Tmapv2.Marker({
-              position: new Tmapv2.LatLng(routeInfoObj.lat, routeInfoObj.lng),
-              icon: routeInfoObj.markerImage,
-              iconSize: size,
-              map: map,
+          if (!mapDiv.firstChild) {
+            map = new Tmapv2.Map("map_div", {
+              center: new Tmapv2.LatLng(37.566481622437934, 126.98502302169841),
+              width: "280px",
+              height: "280px",
+              zoom: 15,
             });
-
-            resultdrawArr.push(marker_p);
           }
-        });
+        }
 
-        drawLine(drawInfoArr);
-        moveMapCenterToMiddle(drawInfoArr); // Move center after drawing the route
+        // 경로 요청 및 지도에 그리기
+        async function fetchRouteData() {
+          if (intermediatePoints.length < 2) {
+            alert("경로를 그릴 수 있는 충분한 점이 없습니다.");
+            return;
+          }
 
-        // Add 5 intermediate markers along the route
-        const intermediatePoints = [
-          new Tmapv2.LatLng(37.5652, 126.9855),
-          new Tmapv2.LatLng(37.5655, 126.9865),
-          new Tmapv2.LatLng(37.566, 126.987),
-          new Tmapv2.LatLng(37.5662, 126.9875),
-          new Tmapv2.LatLng(37.5665, 126.988),
-        ];
-        addIntermediateMarkers(intermediatePoints); // Pass intermediate points to add markers
-      }
+          const startPoint = intermediatePoints[0]; // 출발지
+          const endPoint = intermediatePoints[intermediatePoints.length - 1]; // 도착지
 
-      // Draw polyline on the map
-      function drawLine(arrPoint) {
-        const polyline = new Tmapv2.Polyline({
-          path: arrPoint,
-          strokeColor: "#DD0000",
-          strokeWeight: 6,
-          map: map,
-        });
-        resultdrawArr.push(polyline);
-      }
+          const requestData = {
+            startX: startPoint.lng(),
+            startY: startPoint.lat(),
+            endX: endPoint.lng(),
+            endY: endPoint.lat(),
+            reqCoordType: "WGS84GEO",
+            resCoordType: "EPSG3857",
+            startName: "출발지",
+            endName: "도착지",
+          };
 
-      // Move the map's center to the middle of the route
-      function moveMapCenterToMiddle(points) {
-        if (points.length === 0) return;
+          try {
+            const response = await fetch(
+              "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
+              {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(requestData),
+              }
+            );
 
-        // Calculate the midpoint of the route
-        let latSum = 0;
-        let lngSum = 0;
+            const data = await response.json();
 
-        points.forEach((point) => {
-          latSum += point.lat(); // Use lat() method to get latitude
-          lngSum += point.lng(); // Use lng() method to get longitude
-        });
+            if (response.ok) {
+              processRouteData(data);
+            } else {
+              throw new Error("Failed to fetch route data");
+            }
+          } catch (error) {}
+        }
 
-        const latMiddle = latSum / points.length;
-        const lngMiddle = lngSum / points.length;
+        // 경로 데이터 처리 및 지도에 경로 그리기
+        function processRouteData(responseData) {
+          const resultData = responseData.features;
 
-        // Move the map center to the calculated middle point
-        map.setCenter(new Tmapv2.LatLng(latMiddle, lngMiddle));
-      }
+          // 기존 마커 및 선 제거
+          resultdrawArr.forEach((marker) => marker.setMap(null));
+          resultdrawArr = [];
+          drawInfoArr = [];
 
-      // Add intermediate markers (5 points) to the route
-      function addIntermediateMarkers(points) {
-        points.forEach((point) => {
-          const marker = new Tmapv2.Marker({
-            position: point,
-            icon: "http://topopen.tmap.co.kr/imgs/point.png",
-            iconSize: new Tmapv2.Size(8, 8),
+          resultData.forEach((feature) => {
+            const { geometry, properties } = feature;
+            if (geometry.type === "LineString") {
+              geometry.coordinates.forEach((coordinate) => {
+                const latlng = new Tmapv2.Point(coordinate[0], coordinate[1]);
+                const convertPoint =
+                  new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
+                const convertChange = new Tmapv2.LatLng(
+                  convertPoint._lat,
+                  convertPoint._lng
+                );
+                drawInfoArr.push(convertChange);
+              });
+            }
+          });
+
+          drawLine(drawInfoArr); // 지도에 경로 선 그리기
+          moveMapCenterToMiddle(drawInfoArr); // 경로 중심으로 지도 이동
+          addIntermediateMarkers(intermediatePoints); // 중간 지점 마커 추가
+
+          const tDistance = `총 거리 : ${(
+            resultData[0].properties.totalDistance / 1000
+          ).toFixed(1)}km,`;
+          const tTime = ` 총 시간 : ${(
+            resultData[0].properties.totalTime / 60
+          ).toFixed(0)}분`;
+          document.querySelector("#result").innerHTML = tDistance + tTime;
+          addresses.push(addresses[0]);
+          const tempHTML = addresses
+            .map((addr) => {
+              return `<div id = "addr">${addr}<div>`;
+            })
+            .join("");
+          document.querySelector("#route").innerHTML = tempHTML;
+        }
+
+        // 지도에 경로 선 그리기
+        function drawLine(arrPoint) {
+          const polyline = new Tmapv2.Polyline({
+            path: arrPoint,
+            strokeColor: "#DD0000",
+            strokeWeight: 6,
             map: map,
           });
-          resultdrawArr.push(marker);
-        });
-      }
+          resultdrawArr.push(polyline);
+        }
 
-      // Initialize map and set up button click event
-      window.onload = () => {
-        initTmap();
+        // 경로 중간 지점 마커 추가
+        function addIntermediateMarkers(points) {
+          points.forEach((point) => {
+            const marker = new Tmapv2.Marker({
+              position: point,
+              icon: "http://topopen.tmap.co.kr/imgs/point.png",
+              iconSize: new Tmapv2.Size(8, 8),
+              map: map,
+            });
+            resultdrawArr.push(marker);
+          });
+        }
 
-        marker_s = new Tmapv2.Marker({
-          position: new Tmapv2.LatLng(37.564991, 126.983937),
-          icon: "/upload/tmap/marker/pin_r_m_s.png",
-          iconSize: new Tmapv2.Size(24, 38),
-          map: map,
-        });
+        // 경로 중심으로 지도 이동
+        function moveMapCenterToMiddle(arrPoint) {
+          let lat = 0;
+          let lng = 0;
+          arrPoint.forEach((point) => {
+            lat += point.lat();
+            lng += point.lng();
+          });
+          lat /= arrPoint.length;
+          lng /= arrPoint.length;
+          map.setCenter(new Tmapv2.LatLng(lat, lng));
+        }
 
-        marker_e = new Tmapv2.Marker({
-          position: new Tmapv2.LatLng(37.566158, 126.98894),
-          icon: "/upload/tmap/marker/pin_r_m_e.png",
-          iconSize: new Tmapv2.Size(24, 38),
-          map: map,
-        });
-      };
-
-      // Attach event listener to the button to draw the route on the map
-      document
-        .getElementById("drawLineBtn")
-        .addEventListener("click", async (e) => {
+        // "경로 그리기" 버튼 클릭 시 처리
+        document.getElementById("drawLineBtn").addEventListener("click", () => {
+          document.querySelector("#result").innerHTML =
+            "추천 경로를 탐색하고 있습니다.";
           const address = document.getElementById("address").value;
-          e.preventDefault();
-          const result = await gpt(address);
-          console.log(result);
-          fetchRouteData(); // Fetch route data when clicking the button
+          if (address) {
+            gpt(address);
+          } else {
+            alert("주소를 입력하세요.");
+          }
         });
+
+        // 지도 초기화
+        initTmap();
+      } catch (err) {
+        gpt(address);
+      }
     </script>
   </body>
 </html>
