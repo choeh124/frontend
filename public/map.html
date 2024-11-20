@@ -19,6 +19,7 @@
   <body>
     <div id="map_div"></div>
     <p id="result"></p>
+    <input id="address" />
     <button id="drawLineBtn">경로 그리기</button>
 
     <script>
@@ -29,7 +30,36 @@
       let drawInfoArr = [];
       let resultdrawArr = [];
 
-      // Initialize the map
+      async function gpt(address) {
+        const keyRespnose = await fetch("http://127.0.0.1:8000/api/key/gpt");
+        const keyResult = await keyRespnose.json();
+        const key = keyResult.gptKey;
+        const promptData = {
+          messages: [
+            {
+              role: "system",
+              content:
+                "너는 주어진 문장을 해석해서 도로명주소만을 배열에 담아 json으로 감싸 출력하는 AI야.",
+            },
+            {
+              role: "user",
+              content: `${address}에서 출발하고 끝나는 총 3km의 왕복 산책 코스의 출발지와 중간지점 5개와 도착지의 도로명주소를 배열에 담아 줘.`,
+            },
+          ],
+        };
+        const gptResponse = await fetch(
+          "https://warme-m3p2wioi-francecentral.cognitiveservices.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2024-08-01-preview",
+          {
+            method: "POST",
+            headers: { "api-key": key, "Content-Type": "application/json" },
+            body: JSON.stringify(promptData),
+          }
+        );
+        const gptResult = await gptResponse.json();
+        const result = JSON.parse(gptResult.choices[0].message.content);
+        return result;
+      }
+
       function initTmap() {
         const mapDiv = document.getElementById("map_div");
 
@@ -226,10 +256,15 @@
       };
 
       // Attach event listener to the button to draw the route on the map
-      document.getElementById("drawLineBtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        fetchRouteData(); // Fetch route data when clicking the button
-      });
+      document
+        .getElementById("drawLineBtn")
+        .addEventListener("click", async (e) => {
+          const address = document.getElementById("address").value;
+          e.preventDefault();
+          const result = await gpt(address);
+          console.log(result);
+          fetchRouteData(); // Fetch route data when clicking the button
+        });
     </script>
   </body>
 </html>
