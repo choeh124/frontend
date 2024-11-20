@@ -5,12 +5,13 @@
     margin-right: 62px;
 } 
 
-.ImgBox{
+.ImgBox, img{
     width: 396px;
     height: 396px;
     border-radius: 10px;
     background-color: aqua;
 }
+
 
 .PostComment h2{
     font-size: 24px;

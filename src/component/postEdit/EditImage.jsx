@@ -1,11 +1,11 @@
-import './WriteImage.css'
+import './EditImage.css'
 
-export default function WriteImage(){
+export default function EditImage(){
     return(
-        <div className='WriteImage'>
+        <div className='EditImage'>
           
             <div className='WimageBox'>
-                <img src="" alt="" />
+                <img src="./image/seoul-forest.svg" alt=""  />
                 <p>이미지를 추가해 주세요</p>
             </div>
             <div className='WimageInfo'>
