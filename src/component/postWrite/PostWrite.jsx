@@ -3,6 +3,7 @@ import Header from "../Header"
 import Footer from "../Footer"
 import WriteImage from "./WriteImage"
 import WriteText from "./WriteText"
+import { useState } from 'react'
 
 export default function PostWrite(){
     return(

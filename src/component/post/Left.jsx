@@ -1,15 +1,21 @@
+
 import "./Left.css"
 
-export default function Left(){
+export default function Left({data}){
+const {title, image, createdAt, nickname} = data
+
+    const endpoint = "https://stimgshortwalk.blob.core.windows.net/images/";
+    const url = image ? endpoint +image : ""; // 이미지 URL 생성
+
     return(
         <div className="Lcontent">
             <div className="ImgBox">
-                <img src="" alt="" />
+                <img src={url} alt="" />
             </div>
             <div className="PostComment">
-                <h2>서울 숲 공기가 너무 맑아요</h2>
-                <p>seoulsoup</p>
-                <p>2024. 10. 30.</p>
+                <h2>{title}</h2>
+                <p>{nickname}</p>
+                <p>{createdAt.split("T")[0]}</p>
             </div>
         </div>
     )

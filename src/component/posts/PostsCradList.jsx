@@ -1,58 +1,24 @@
-import React from "react"
+import axios from "axios";
+import React, { useState, useEffect } from "react"
 import PostsCard from "./PostsCard"
-import './PostsCardList.css'
 
 export default function PostsCardList(){
+    const [posts, Setposts] = useState([]);
+
+    useEffect(()=>{
+        const findPost = async ()=>{
+            const response = await axios.get(`http://127.0.0.1:8000/api/posts`);
+            const data =response.data;
+            console.log(data);
+            Setposts(data);
+        }
+        findPost();
+        
+    })
+    
     return(
         <div className="PostsCardList">
-            <PostsCard>
-                <div>
-                    <img src="" alt="" />
-                    <h3>서울 숲 공기가 너무 맑아요</h3>
-                    <p>seoulsoup</p> 
-                    <p>2024. 10. 30.</p>
-                </div>
-            </PostsCard>
-            <PostsCard>
-                <div>
-                    <img src="" alt="" />
-                    <h3>서울 숲 공기가 너무 맑아요</h3>
-                    <p>seoulsoup</p> 
-                    <p>2024. 10. 30.</p>
-                </div>
-            </PostsCard>
-            <PostsCard>
-                <div>
-                    <img src="" alt="" />
-                    <h3>서울 숲 공기가 너무 맑아요</h3>
-                    <p>seoulsoup</p> 
-                    <p>2024. 10. 30.</p>
-                </div>
-            </PostsCard>
-            <PostsCard>
-                <div>
-                    <img src="" alt="" />
-                    <h3>서울 숲 공기가 너무 맑아요</h3>
-                    <p>seoulsoup</p> 
-                    <p>2024. 10. 30.</p>
-                </div>
-            </PostsCard>
-            <PostsCard>
-                <div>
-                    <img src="" alt="" />
-                    <h3>서울 숲 공기가 너무 맑아요</h3>
-                    <p>seoulsoup</p> 
-                    <p>2024. 10. 30.</p>
-                </div>
-            </PostsCard>
-            <PostsCard>
-                <div>
-                    <img src="" alt="" />
-                    <h3>서울 숲 공기가 너무 맑아요</h3>
-                    <p>seoulsoup</p> 
-                    <p>2024. 10. 30.</p>
-                </div>
-            </PostsCard>
+            <PostsCard posts={posts}></PostsCard>
 
         </div>
     )
