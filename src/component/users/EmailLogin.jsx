@@ -1,8 +1,51 @@
 import Footer from "../Footer";
 import Header from "../Header";
 import "./EmailLogin.css";
+import React, { useState } from 'react';
+
 
 export default function EmailLogin() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleInputChange = (e) => {
+    if("email" == e.target.id){
+      setEmail(e.target.value.trim());
+    }
+    if("password" == e.target.id){
+      setPassword(e.target.value.trim());
+    }
+  };
+
+  const handleSubmit = (e) => {
+      e.preventDefault(); // 기본 폼 제출 동작 방지
+
+      fetch("http://localhost:8000/api/auth/login", {
+      method: "POST", // POST 요청
+      headers: {
+          "Content-Type": "application/json", // JSON 형식으로 전송
+      },
+      body: JSON.stringify({ email, password }), // 이메일을 JSON 형태로 전송
+      })
+      .then((response) => {
+          if (response.ok) {
+            alert("로그인이 완료되었습니다.")
+          } else{
+            throw new Error("네트워크 응답에 문제가 있습니다.");
+          }
+          return response.json()
+      })
+      .then((data) => {
+console.log(data)
+          window.sessionStorage.setItem("Authorization", data.accessToken)
+          console.log("Auth Session Storage", window.sessionStorage.getItem("Authorization"))
+      })
+      .catch((error) => {
+          console.error("Error:", error); // 오류 처리
+      });
+  };
+
   return (
     <div>
       <Header />
@@ -11,17 +54,15 @@ export default function EmailLogin() {
           <h1>로그인</h1>
           <div className="form-row">
             <label>E-mail</label>
-            <input type="text" id="email" className="input2"></input>
+            <input type="text" id="email" className="input2" onChange={handleInputChange}></input>
           </div>
           <div className="form-row">
             <label>비밀번호</label>
-            <input type="password" id="password" className="input2"></input>
+            <input type="password" id="password" className="input2" onChange={handleInputChange}></input>
           </div>
-          <button className="special-button" onClick="">
-          <svg  className="mail-icon" width="14.5" height="13.5" viewBox="0 0 29 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.83366 22.5C4.16908 22.5 3.60015 22.2797 3.12689 21.8391C2.65362 21.3984 2.41699 20.8687 2.41699 20.25V6.75C2.41699 6.13125 2.65362 5.60156 3.12689 5.16094C3.60015 4.72031 4.16908 4.5 4.83366 4.5H24.167C24.8316 4.5 25.4005 4.72031 25.8738 5.16094C26.347 5.60156 26.5837 6.13125 26.5837 6.75V20.25C26.5837 20.8687 26.347 21.3984 25.8738 21.8391C25.4005 22.2797 24.8316 22.5 24.167 22.5H4.83366ZM14.5003 14.625L4.83366 9V20.25H24.167V9L14.5003 14.625ZM14.5003 12.375L24.167 6.75H4.83366L14.5003 12.375ZM4.83366 9V6.75V20.25V9Z" fill="#42ADFB"/>
-          </svg>
-          이메일 로그인</button>
+          <button onClick={handleSubmit}>
+      전송
+      </button>
         </div>
       </div>
       <Footer />

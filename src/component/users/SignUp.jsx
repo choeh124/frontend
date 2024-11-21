@@ -1,9 +1,6 @@
 import Footer from "../Footer";
 import Header from "../Header";
 import "./SignUp.css";
-import AuthEmail from "./AuthEmail";
-import AuthVerify from "./AuthVerify";
-import AuthSignUp from "./AuthSignUp";
 import React, { useState } from 'react';
 
 export default function SignUp() {
@@ -32,8 +29,86 @@ export default function SignUp() {
     }
     
   };
+  const handleEmailSubmit = (e) => {
+    e.preventDefault(); // 기본 폼 제출 동작 방지d
+
+    fetch("http://localhost:8000/api/auth/email", {
+    method: "POST", // POST 요청
+    headers: {
+        "Content-Type": "application/json", // JSON 형식으로 전송
+    },
+    body: JSON.stringify({ email }), // 이메일을 JSON 형태로 전송
+    })
+    .then((response) => {
+        if (!response.ok) {
+        throw new Error("네트워크 응답에 문제가 있습니다.");
+        }
+        return response;
+    })
+    .then((data) => {
+        alert('메일로 전송된 인증번호를 입력해 주세요');
+    })
+    .catch((error) => {
+        console.error("Error:", error); // 오류 처리
+    });
+};
 
 
+const handleSignupSubmit = (e) => {
+e.preventDefault(); // 기본 폼 제출 동작 방지
+
+
+fetch("http://localhost:8000/api/auth/signup", {
+  method: "POST", // POST 요청
+  headers: {
+    "Content-Type": "application/json", // JSON 형식으로 전송
+  },
+  body: JSON.stringify({ email, nickname, password }), // 이메일을 JSON 형태로 전송
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("네트워크 응답에 문제가 있습니다.");
+    }
+    return response.json();
+  })
+  .then((data) => {
+
+    alert('회원가입 되었습니다.');
+    window.sessionStorage.setItem("Authorization", data.accessToken)
+    console.log("Auth Session Storage", window.sessionStorage.getItem("Authorization"))
+    window.location.href = '/';
+  })
+  .catch((error) => {
+    console.error("Error:", error); // 오류 처리
+  });
+};
+
+
+const handleVerifySubmit = (e) => {
+  e.preventDefault(); // 기본 폼 제출 동작 방지
+
+
+  fetch("http://localhost:8000/api/auth/verify", {
+    method: "POST", // POST 요청
+    headers: {
+      "Content-Type": "application/json", // JSON 형식으로 전송
+    },
+    body: JSON.stringify({ email, number }), // 이메일을 JSON 형태로 전송
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("네트워크 응답에 문제가 있습니다.");
+      }
+      return response;
+    })
+    .then((data) => {
+      console.log(data); // 응답 데이터 출력
+      alert('인증되었습니다.');
+    })
+    .catch((error) => {
+      console.error("Error:", error); // 오류 처리
+    });
+  }
   return (
     <div>
       <Header />
@@ -42,22 +117,23 @@ export default function SignUp() {
         <h1>회원가입</h1>
         <div className = "form-row">
         <label>E-mail</label><input type="text" id="email" value={email} onChange={handleInputChange}></input>
-        <AuthEmail email={email}>전송</AuthEmail>
+        <button onClick={handleEmailSubmit}>전송</button>
         </div>
         <div className = "form-row">
         <label>인증번호</label><input type="text" id="number" value={number} onChange={handleInputChange}></input>
-        <AuthVerify number={number} email={email}>인증</AuthVerify>
+        <button onClick={handleVerifySubmit}>인증</button>
         </div>
         <div className = "form-row">
         <label>닉네임</label><input type="text" id="nickname" onChange={handleInputChange}></input>
         </div>
         <div className = "form-row">
-        <label>비밀번호</label><input type="password" id="password"></input>
+        <label>비밀번호</label><input type="password" id="password" onChange={handleInputChange}></input>
         </div>
         <div className = "form-row">
         <label>비밀번호 확인</label><input type="password" id="confirm" onChange={handleInputChange} ></input>
         </div>
-        <AuthSignUp number={number} nickname={nickname} password={password}>이메일 회원가입</AuthSignUp>
+        <button className="special-button" onClick={handleSignupSubmit}>이메일 회원 가입
+      </button>
       </div>
       </div>
       <Footer />
