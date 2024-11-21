@@ -1,35 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
-.Section01{
-    font-family: 'Roboto', sans-serif;
-    padding: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+.Section01 {
+  font-family: "Roboto", sans-serif;
+  padding: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* 화면 크기가 작아지면 요소들이 한 줄에 다 들어갈 수 있도록 함 */
 }
 
-.Section01 .S1imageContent{}
-.Section01 .S1imageContent img{
-    width: 600px;
-    height: 464px;
-    background-color: #475569;
+/* 이미지 스타일 */
+.Section01 .S1imageContent img {
+  width: 600px;
+  height: 464px;
+  background-color: #475569;
 }
 
-.Section01 .S1textContent{}
-.Section01 .S1textContent h3{
-    font-size: 56px;
-    font-style: ExtraBold;
-    line-height: 110%;
-    color: #0F172A;
-    margin-bottom: 0;
-    padding-bottom: 60px;
+/* 텍스트 콘텐츠 스타일 */
+.Section01 .S1textContent h3 {
+  font-size: 56px;
+  font-weight: 800; /* ExtraBold에 해당하는 font-weight 값 */
+  line-height: 110%;
+  color: #0f172a;
+  margin-bottom: 0;
+  padding-bottom: 60px;
 }
 
-.Section01 .S1textContent ul{
-    font-size: 18px;
-    line-height: 160%;
-    color: #475569;
-    padding-bottom: 24px;
+.Section01 .S1textContent ul {
+  font-size: 18px;
+  line-height: 160%;
+  color: #475569;
+  padding-bottom: 24px;
 }
 
+/* 화면 크기가 768px 이하일 때 */
+@media (max-width: 768px) {
+  .Section01 {
+    flex-direction: column; /* 세로 레이아웃으로 변경 */
+    padding: 40px;
+  }
+
+  .Section01 .S1imageContent img {
+    width: 100%; /* 이미지가 부모 요소의 100%를 차지하도록 */
+    height: auto; /* 높이는 자동으로 비율에 맞게 조정 */
+  }
+
+  .Section01 .S1textContent h3 {
+    font-size: 32px; /* 모바일 화면에 맞는 텍스트 크기 */
+    padding-bottom: 30px; /* 여백을 줄임 */
+  }
+
+  .Section01 .S1textContent ul {
+    font-size: 16px; /* 모바일에서 글자 크기 조금 더 작게 */
+  }
+}
+
+/* 화면 크기가 480px 이하일 때 (작은 모바일 화면) */
+@media (max-width: 480px) {
+  .Section01 {
+    padding: 20px; /* 모바일에서 여백을 더 줄임 */
+  }
+
+  .Section01 .S1textContent h3 {
+    font-size: 24px; /* 더 작은 화면에 맞춰 텍스트 크기 조정 */
+    padding-bottom: 20px; /* 여백을 더 줄임 */
+  }
+
+  .Section01 .S1textContent ul {
+    font-size: 14px; /* 더 작은 화면에 맞춰 글자 크기 조정 */
+  }
+}

@@ -38,8 +38,7 @@ export default function Chart() {
           "http://127.0.0.1:8000/api/statistics/category",
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiNDYwNmI0Y2MtYzQyMy00ZmQzLWI3MDQtZmZhZDFmYjNjYjI0Iiwicm9sZSI6InVzZXIiLCJuaWNrbmFtZSI6InZlcmRhbnRqdWx5In0sImlhdCI6MTczMjE1Mzg2MCwiZXhwIjoxNzMyMTU3NDYwfQ.bht_HeEoWGG7VNYgL-dV8Uux3HbVH3rbWuia03kpefo", // 여기에 필요한 Authorization 헤더를 추가하세요
+              Authorization: window.sessionStorage.getItem("Authorization"),
             },
           }
         );
