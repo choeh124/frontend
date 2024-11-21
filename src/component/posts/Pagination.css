@@ -1,0 +1,36 @@
+/* 페이지네이션 기본 스타일 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.page-btn {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.page-btn:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+  border-color: #ddd;
+}
+
+.page-btn:hover:not(:disabled) {
+  background-color: #007bff;
+  color: white;
+}
+
+.page-btn:focus {
+  outline: none;
+}
+
+.page-btn.active {
+  background-color: #007bff;
+  color: white;
+}

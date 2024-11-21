@@ -1,6 +1,6 @@
 import "./App.css";
 import Login from "./component/users/Login.jsx";
-import Posts from "./component/posts/Posts.jsx";
+import PostsPage from "./component/posts/PostsPage.jsx";
 import Post from "./component/post/Post.jsx";
 import PostWrite from "./component/postWrite/PostWrite.jsx";
 
@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:id" element={<Post />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/post/write" element={<PostWrite />} />

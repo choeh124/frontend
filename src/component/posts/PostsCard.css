@@ -1,38 +1,62 @@
-.PostsCard{
-    margin: 65px auto;
-    width: 1235.38px;
-    /* height: 719.98px; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.PostsCard {
+  margin: 65px auto;
+  width: 1235px; /* 고정된 너비 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.PostsCard div{
-    padding: 16px 22px;
-    border: solid 1px #D4D2E3;
-    border-radius: 24px;
-    flex: 1 0 21%; /* explanation below */
-     margin: 5px;
+/* 카드 스타일 */
+.PostsCard div {
+  padding: 16px 22px;
+  border: solid 1px #d4d2e3;
+  border-radius: 24px;
+  flex: 1 0 21%; /* 각 카드의 너비를 21%로 설정 */
+  margin: 5px;
+  box-sizing: border-box; /* 패딩과 마진이 포함되도록 설정 */
 }
 
-.PostsCard img{
-    width: 336.41px;
-    height: 198.59px;
-    border-radius: 24px;
-    background-color: antiquewhite;
-
+/* 이미지 스타일 */
+.PostsCard img {
+  width: 100%; /* 부모 요소의 너비에 맞게 자동 크기 조정 */
+  height: auto; /* 비율에 맞게 높이 자동 조정 */
+  border-radius: 24px;
+  background-color: antiquewhite;
 }
 
-
-.PostsCard h3{
-    font-size: 24px;
-    line-height: 34px;
-    font-weight: bold;
-    color: #5D5A88;
+/* 카드 제목 */
+.PostsCard h3 {
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: bold;
+  color: #5d5a88;
 }
 
-.PostsCard p{
-    font-size: 18px;
-    line-height: 30px;
-    color: #A0A3BD;
+/* 카드 내용 */
+.PostsCard p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #a0a3bd;
+}
+
+/* 화면 크기가 1024px 이하일 때 (태블릿 화면) */
+@media (max-width: 1024px) {
+  .PostsCard {
+    width: 90%; /* 화면 크기에 맞춰 너비를 90%로 조정 */
+  }
+
+  .PostsCard div {
+    flex: 1 0 48%; /* 각 카드가 2개씩 가로로 배치 */
+  }
+}
+
+/* 화면 크기가 768px 이하일 때 (모바일 화면) */
+@media (max-width: 768px) {
+  .PostsCard {
+    width: 100%; /* 화면 너비에 맞게 100% */
+  }
+
+  .PostsCard div {
+    flex: 1 0 100%; /* 각 카드가 세로로 하나씩 배치 */
+  }
 }
