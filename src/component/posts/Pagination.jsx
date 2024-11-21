@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "./Pagination.css"; // 스타일을 별도의 CSS 파일에서 관리
-
+import "./Pagination.css";
 export default function Pagination({
   currentPage,
   setCurrentPage,
@@ -12,49 +11,52 @@ export default function Pagination({
     setCurrentPage(page);
   };
 
-  // 이전 페이지
+  // 이전 페이지 (10개 단위로 이동)
   const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+    if (currentPage > 10) {
+      setCurrentPage(currentPage - 10); // 10개 단위로 페이지 감소
+    } else {
+      setCurrentPage(1); // 첫 페이지로 이동
     }
   };
 
-  // 다음 페이지
+  // 다음 페이지 (10개 단위로 이동)
   const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+    if (currentPage + 10 <= totalPages) {
+      setCurrentPage(currentPage + 10); // 10개 단위로 페이지 증가
+    } else {
+      setCurrentPage(totalPages); // 마지막 페이지로 이동
     }
   };
 
-  // 페이지 번호 배열 생성
+  // 페이지 번호 배열 생성 (10개씩 표시할 페이지 번호)
   const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
+  const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1;
+  const endPage = Math.min(startPage + 9, totalPages);
+
+  for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
 
   return (
     <div className="pagination">
       <button
-        className="page-btn prev-btn"
+        className="prev-btn"
         onClick={prevPage}
         disabled={currentPage === 1}
       >
         ◀
       </button>
-
-      {/* 페이지 번호 버튼 생성 */}
       {pageNumbers.map((page) => (
         <button
           key={page}
           className={`page-btn ${currentPage === page ? "active" : ""}`}
           onClick={() => goToPage(page)}
-        >
-          {page}
-        </button>
+        ></button>
       ))}
 
       <button
-        className="page-btn next-btn"
+        className="next-btn"
         onClick={nextPage}
         disabled={currentPage === totalPages}
       >

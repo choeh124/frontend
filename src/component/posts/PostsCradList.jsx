@@ -22,7 +22,7 @@ export default function PostsCardList() {
     };
     findPost();
     findTotalPages();
-  });
+  }, [currentPage]);
 
   return (
     <div className="PostsCardList">

@@ -3,26 +3,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  gap: 10px;
 }
 
 .page-btn {
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #dcdcdc;
+  border: none;
   cursor: pointer;
-  border-radius: 5px;
 }
 
 .page-btn:disabled {
   cursor: not-allowed;
-  background-color: #ddd;
-  border-color: #ddd;
+  background-color: #dcdcdc;
 }
 
 .page-btn:hover:not(:disabled) {
-  background-color: #007bff;
+  background-color: #0094ff;
   color: white;
 }
 
@@ -31,6 +30,16 @@
 }
 
 .page-btn.active {
-  background-color: #007bff;
+  background-color: #0094ff;
   color: white;
+}
+/* 이전/다음 버튼에 여백 추가 */
+.prev-btn,
+.next-btn {
+  padding: 0 15px; /* 좌우에 여백을 추가 */
+  font-size: 18px; /* 버튼의 크기 증가 */
+  background-color: white;
+  border: none;
+
+  color: #72b6ff;
 }
