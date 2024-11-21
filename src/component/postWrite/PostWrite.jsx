@@ -31,12 +31,19 @@ export default function PostWrite(){
   };
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]); // 파일을 상태에 저장
-    if (file) {
-        setPreview(URL.createObjectURL(file)); // 파일을 브라우저에서 볼 수 있는 URL로 변환
+    const selectedFile = e.target.files[0]; // 첫 번째 파일 선택
+    if (selectedFile) {
+      // 이미지 파일 확인
+      if (!selectedFile.type.startsWith('image/')) {
+        alert('이미지 파일만 업로드할 수 있습니다.');
+        return;
       }
-  };
 
+      // 상태 업데이트
+      setFile(selectedFile); // 파일 상태 저장
+      setPreview(URL.createObjectURL(selectedFile)); // 미리 보기 URL 생성
+    }
+  };
   // FormData POST 요청
   const handleSubmit = async (e) => {
     e.preventDefault(); // 폼 제출 기본 동작 방지
@@ -65,14 +72,6 @@ export default function PostWrite(){
       alert('업로드 실패!');
     }
   };
-
-  useEffect(() => {
-    return () => {
-      if (preview) {
-        URL.revokeObjectURL(preview);
-      }
-    };
-  }, [preview]);
 
     return(
         <div>
