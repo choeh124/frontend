@@ -25,7 +25,7 @@
 }
 
 
-textarea.content {
+textarea.WTcontent {
     height: 290px;
     resize: none; /* 사용자 크기 조정 비활성화 */
 }
@@ -63,7 +63,7 @@ textarea.content {
 }
 
 @media (max-width: 480px) {
-    textarea.content {
+    textarea.WTcontent {
         height: 120px; /* 모바일에서 텍스트 입력 박스 크기 조정 */
     }
 
