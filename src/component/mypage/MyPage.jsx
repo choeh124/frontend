@@ -2,6 +2,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import Chart from "./Chart";
 import "./MyPage.css";
+import LoginChecker from "../LoginChecker";
 export default function MyPage() {
   return (
     <div>
@@ -14,6 +15,7 @@ export default function MyPage() {
           <button className="user-delete-btn">회원 탈퇴</button>
         </div>
       </div>
+      <LoginChecker />
       <Footer />
     </div>
   );

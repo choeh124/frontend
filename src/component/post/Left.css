@@ -6,11 +6,17 @@
 }
 
 .ImgBox,
-.ImgBox > img {
+.ImgBox > img,
+.no-image {
   width: 396px;
   height: 396px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5d5a88;
 }
 
 .PostComment h2 {

@@ -5,13 +5,26 @@ export default function Header() {
   return (
     <header>
       <nav>
-        <h1>짧은 산책</h1>
+        <h1
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/";
+          }}
+        >
+          짧은 산책
+        </h1>
 
         {authorization ? (
           <div className="buttonBox">
             <button>채팅</button>
             <button>로그아웃</button>
-            <button className="blue">
+            <button
+              className="blue"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/mypage";
+              }}
+            >
               My Page
               <svg
                 width="24"
