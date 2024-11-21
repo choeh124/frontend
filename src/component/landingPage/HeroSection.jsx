@@ -13,8 +13,14 @@ export default function HeroSection() {
         <br />
         일상에서도, 직장에서도, 그 어디에서도.
       </p>
-      <button className="HeroButton">
-        무료 회원 가입{" "}
+      <button
+        className="HeroButton"
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.href = "/signup";
+        }}
+      >
+        무료 회원 가입
         <svg
           width="24"
           height="24"
