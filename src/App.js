@@ -13,6 +13,7 @@ import LandingPage from "./component/landingPage/LandingPage.jsx";
 import AdminPage from "./component/adminPage/AdminPage.jsx";
 import GroupPage from "./component/groupPage/GroupPage.jsx";
 import MusicPage from "./component/musicPage/MusicPage.jsx";
+import UserUpdate from "./component/temp/UserUpdate.jsx";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/group" element={<GroupPage />} />
           <Route path="/music" element={<MusicPage />} />
+          <Route path="/user/edit" element={<UserUpdate />} />
         </Routes>
       </Router>
     </div>
