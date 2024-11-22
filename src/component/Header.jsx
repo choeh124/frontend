@@ -1,7 +1,31 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./Header.css";
 
 export default function Header() {
   const authorization = window.sessionStorage.getItem("Authorization");
+  const [isLogined, setIsLogined] = useState(true);
+  useEffect(() => {
+    async function authCheck() {
+      const response = await axios.get("http://127.0.0.1:8000/api/auth/check", {
+        headers: { Authorization: authorization },
+      });
+      console.log(response);
+      if (
+        !response.statusText == "OK" &&
+        !(
+          window.location.pathname == "/login" ||
+          window.location.pathname == "/login/email" ||
+          window.location.pathname == "/"
+        )
+      ) {
+        alert("로그인이 필요한 서비스입니다.");
+        window.location.href = "/login";
+      }
+      setIsLogined(true);
+    }
+    authCheck();
+  }, []);
   return (
     <header>
       <nav>
@@ -14,7 +38,27 @@ export default function Header() {
           짧은 산책
         </h1>
 
-        {authorization ? (
+        {isLogined ? (
+          <div className="buttonBox">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/login";
+              }}
+            >
+              로그인
+            </button>
+            <button
+              className="blue"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/signup";
+              }}
+            >
+              회원 가입
+            </button>
+          </div>
+        ) : (
           <div className="buttonBox">
             <button>채팅</button>
             <button>로그아웃</button>
@@ -48,26 +92,6 @@ export default function Header() {
                   stroke-linejoin="round"
                 />
               </svg>
-            </button>
-          </div>
-        ) : (
-          <div className="buttonBox">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/login/email";
-              }}
-            >
-              로그인
-            </button>
-            <button
-              className="blue"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/signup";
-              }}
-            >
-              회원 가입
             </button>
           </div>
         )}

@@ -13,7 +13,7 @@ import LandingPage from "./component/landingPage/LandingPage.jsx";
 import AdminPage from "./component/adminPage/AdminPage.jsx";
 import GroupPage from "./component/groupPage/GroupPage.jsx";
 import MusicPage from "./component/musicPage/MusicPage.jsx";
-import UserUpdate from "./component/temp/UserUpdate.jsx";
+import UserUpdate from "./component/mypage/UserUpdate.jsx";
 
 function App() {
   return (
