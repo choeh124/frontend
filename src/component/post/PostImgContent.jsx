@@ -1,7 +1,7 @@
 import "./PostImgContent.css";
 
 export default function PostImgContent({ data }) {
-  const { title, image, content, createdAt, nickname } = data;
+  const { title, image, content, createdAt, nickname, viewCount } = data;
 
   const endpoint = "https://stimgshortwalk.blob.core.windows.net/images/";
   const url = image ? endpoint + image : null; // 이미지 URL 생성
@@ -20,6 +20,7 @@ export default function PostImgContent({ data }) {
         <p>{content}</p>
         <p>{nickname}</p>
         <p>{createdAt.split("T")[0]}</p>
+        <p><span>👁️</span>{viewCount}</p>
       </div>
     </div>
   );

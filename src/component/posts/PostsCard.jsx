@@ -3,7 +3,6 @@ import "./PostsCard.css";
 
 export default function PostsCard({ posts }) {
   const endpoint = "https://stimgshortwalk.blob.core.windows.net/thumbnails/";
-
   return (
     <div className="PostsCard">
       {posts.map((post) => {
@@ -24,6 +23,7 @@ export default function PostsCard({ posts }) {
             <h3>{post.title}</h3>
             <p>{post.nickname}</p>
             <p>{post.createdAt.split("T")[0]}</p>
+            <p>{post.viewCount}</p>
           </div>
         );
       })}

@@ -1,3 +1,4 @@
+//PostWrite.jsx
 import './PostWrite.css'
 import Header from "../Header"
 import Footer from "../Footer"

@@ -31,3 +31,9 @@
   line-height: 30px;
   color: #a0a3bd;
 }
+
+.PostComment p span{
+  filter: grayscale(100%);
+  opacity: 0.4;
+  padding-right: 5px;
+}
