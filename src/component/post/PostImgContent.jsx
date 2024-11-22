@@ -1,13 +1,13 @@
-import "./Left.css";
+import "./PostImgContent.css";
 
-export default function Left({ data }) {
+export default function PostImgContent({ data }) {
   const { title, image, content, createdAt, nickname } = data;
 
   const endpoint = "https://stimgshortwalk.blob.core.windows.net/images/";
   const url = image ? endpoint + image : null; // 이미지 URL 생성
 
   return (
-    <div className="Lcontent">
+    <div className="PostImgContent">
       <div className="ImgBox">
         {url ? (
           <img src={url} alt="" />

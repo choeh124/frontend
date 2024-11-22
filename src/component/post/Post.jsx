@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
-import Left from "./Left";
-import Right from "./Right";
+import PostImgContent from "./PostImgContent";
+import PostCommentContent from "./PostCommentContent";
 
 const Post = () => {
   const { id } = useParams(); // URL에서 ID 가져오기
@@ -37,8 +37,8 @@ const Post = () => {
     <div className="post">
       <Header />
       <div className="main-content">
-        <Left data={data} />
-        <Right data={data} />
+        <PostImgContent data={data} />
+        <PostCommentContent data={data} />
       </div>
 
       <Footer />
