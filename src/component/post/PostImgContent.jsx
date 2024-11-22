@@ -1,4 +1,5 @@
 //PostImgContent.jsx
+//<Route path="/posts/edit/:id" element={<PostEdit />} />
 import "./PostImgContent.css";
 
 import axios from 'axios'; // axios를 import
@@ -22,33 +23,35 @@ export default function PostImgContent({ data }) {
         <p>{createdAt.split('T')[0]}</p>
         <p><span>👁️</span>{viewCount}</p>
       </div>
-      <button
-        onClick={() => {
-          window.location.href = `/posts/edit/${postId}`; // 수정 페이지로 이동
-        }}
-      >
-        수정하기
-      </button>
-      <button
-        onClick={async () => {
-          if (window.confirm('정말로 삭제하시겠습니까?')) {
-            try {
-              await axios.delete(`http://localhost:8000/api/posts/${postId}`, {
-                headers: {
-                  Authorization: authorization,
-                },
-              });
-              alert('게시물이 삭제되었습니다.');
-              window.location.href = '/posts'; // 게시물 목록으로 이동
-            } catch (error) {
-              console.error('삭제 실패:', error);
-              alert('게시물 삭제에 실패했습니다.');
+      <div className="PIButtonContent">
+        <button
+          onClick={() => {
+            window.location.href = `/posts/edit/${postId}`; // 수정 페이지로 이동
+          }}
+        >
+          수정
+        </button>
+        <button
+          onClick={async () => {
+            if (window.confirm('정말로 삭제하시겠습니까?')) {
+              try {
+                await axios.delete(`http://localhost:8000/api/posts/${postId}`, {
+                  headers: {
+                    Authorization: authorization,
+                  },
+                });
+                alert('게시물이 삭제되었습니다.');
+                window.location.href = '/posts'; // 게시물 목록으로 이동
+              } catch (error) {
+                console.error('삭제 실패:', error);
+                alert('게시물 삭제에 실패했습니다.');
+              }
             }
-          }
-        }}
-      >
-        삭제하기
-      </button>
+          }}
+        >
+          삭제
+        </button>
+      </div>
     </div>
   );
 }
