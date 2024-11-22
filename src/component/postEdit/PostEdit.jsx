@@ -86,6 +86,8 @@ export default function PostEdit({match}){
             });
             console.log('수정 성공:', response.data);
             alert('게시물이 수정되었습니다!');
+            // 수정된 게시물 페이지로 이동
+            window.location.href = `/posts/${postId}`;
         } catch (error) {
             console.error('수정 실패:', error);
             alert('게시물 수정에 실패했습니다.');
