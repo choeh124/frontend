@@ -130,7 +130,7 @@ export default function PostEdit({match}){
                                             required
                                         ></textarea>
                                         <div className='write-button-box'>
-                                            <button type="button" onClick={() => window.history.back()}>취소</button>
+                                            <button type="button" onClick={() => {window.location.href = '/posts/${postId}';}}>취소</button>
                                             <button type="submit">수정</button>
                                         </div>
                                     </div>
