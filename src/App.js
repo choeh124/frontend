@@ -13,7 +13,8 @@ import LandingPage from "./component/landingPage/LandingPage.jsx";
 import AdminPage from "./component/adminPage/AdminPage.jsx";
 import GroupPage from "./component/groupPage/GroupPage.jsx";
 import MusicPage from "./component/musicPage/MusicPage.jsx";
-import UserUpdate from "./component/temp/UserUpdate.jsx";
+import UserUpdate from "./component/mypage/UserUpdate.jsx";
+import SignOut from "./component/users/SignOut.jsx";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/group" element={<GroupPage />} />
           <Route path="/music" element={<MusicPage />} />
           <Route path="/user/edit" element={<UserUpdate />} />
+          <Route path="/user/signout" element={<SignOut />} />
         </Routes>
       </Router>
     </div>
