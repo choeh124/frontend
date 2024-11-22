@@ -1,6 +1,22 @@
 .PostCommentContent{
     margin-bottom: 24px;
+    position: relative;
 }
+
+.PostCommentContent > button{
+    position: absolute; /* 버튼을 부모 요소 내부의 절대 위치로 설정 */
+    bottom: 104%;
+    left: 100%;
+    transform: translateX(-100%);
+    width: 32px;
+    height: 32px;
+    border-radius: 17px;
+    border: none;
+    background-color: #DCDCDC;
+    cursor: pointer;
+    display: flex;
+}
+.PostCommentContent > button svg{}
 
 p{
     font-size: 18px;

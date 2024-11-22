@@ -1,3 +1,4 @@
+//PostWrite.jsx
 import './PostWrite.css'
 import Header from "../Header"
 import Footer from "../Footer"
@@ -97,7 +98,7 @@ export default function PostWrite(){
                                     <input type="category" placeholder="카테고리를 입력해 주세요" name="category" value={formData.category} onChange={handleChange} required />
                                     <textarea className='WTcontent' type="text" placeholder="본문을 입력해 주세요"  name="content" value={formData.content} onChange={handleChange} required></textarea>
                                     <div className='write-button-box'>
-                                        <button>취소</button>
+                                        <button onClick={()=>{ window.location.href = `/posts` }} >취소</button>
                                         <button onClick={handleSubmit}>완료</button>
                                     </div>
                                 </div>
