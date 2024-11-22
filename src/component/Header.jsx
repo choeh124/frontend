@@ -53,6 +53,14 @@ export default function Header() {
         ) : (
           <div className="buttonBox">
             <button
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/login/email";
+              }}
+            >
+              로그인
+            </button>
+            <button
               className="blue"
               onClick={(e) => {
                 e.preventDefault();

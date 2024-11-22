@@ -21,7 +21,7 @@
 .Section02 .S1textContent h3 {
   font-size: 56px;
   font-weight: 800; /* ExtraBold에 해당하는 font-weight */
-  line-height: 110%;
+  line-height: 120%;
   color: #0f172a;
   margin: 0;
   padding-bottom: 60px;

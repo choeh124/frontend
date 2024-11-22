@@ -24,7 +24,7 @@
 .HeroButton {
   background-color: #0094ff;
   color: white;
-  padding: 20px 50px;
+  padding: 12px 24px;
   border: solid 2px #0094ff;
   border-radius: 8px;
   display: flex;
@@ -32,7 +32,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 20px;
-  width: 250px;
-  height: 80px;
   font-weight: 400;
+  cursor: pointer;
+  min-width: 224px;
 }
+
