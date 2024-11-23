@@ -1,5 +1,4 @@
 import "./PostImgContent.css";
-import axiosInstance from "../../axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 export default function PostImgContent({ data }) {
