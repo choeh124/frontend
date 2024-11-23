@@ -28,7 +28,7 @@ function App() {
           <Route path="/posts/:id" element={<Post />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/post/write" element={<PostWrite />} />
-          <Route path="/post/edit" element={<PostEdit />} />
+          <Route path="/post/edit/:id" element={<PostEdit />} />
           <Route path="/login/email" element={<EmailLogin />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/group" element={<GroupPage />} />
