@@ -4,13 +4,14 @@ import "./Header.css";
 
 export default function Header() {
   const authorization = window.sessionStorage.getItem("Authorization");
+  console.log(authorization)
   const [isLogined, setIsLogined] = useState(true);
   useEffect(() => {
     async function authCheck() {
       const response = await axios.get("http://127.0.0.1:8000/api/auth/check", {
         headers: { Authorization: authorization },
       });
-      console.log(response);
+   
       if (
         !response.statusText == "OK" &&
         !(

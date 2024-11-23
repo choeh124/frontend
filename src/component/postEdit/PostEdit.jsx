@@ -9,8 +9,7 @@ import axios from 'axios';
 
 export default function PostEdit() {
     const { id: postId } = useParams(); // URL에서 게시물 ID 추출
-    console.log(postId)
-    console.log('Editing post ID:', postId);
+
     const authorization = window.sessionStorage.getItem("Authorization");
 
     const [formData, setFormData] = useState({
@@ -33,7 +32,7 @@ export default function PostEdit() {
                 setFormData({ title, content, category });
                 if (image_url) setPreview(image_url); // 기존 이미지 설정
             } catch (error) {
-                console.error("게시물 로드 실패:", error);
+            
                 alert(error.response?.data?.message || "게시물 정보를 가져오지 못했습니다.");
             }
         };
@@ -80,11 +79,11 @@ export default function PostEdit() {
                     Authorization: authorization
                 },
             });
-            console.log('수정 성공:', response.data);
+         
             alert('게시물이 수정되었습니다!');
             window.location.href = `/posts/${postId}`;
         } catch (error) {
-            console.error('수정 실패:', error);
+        
             alert(error.response?.data?.message || '게시물 수정에 실패했습니다.');
         }
     };

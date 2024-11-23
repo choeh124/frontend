@@ -28,7 +28,7 @@ const Post = () => {
     fetchPost();
   }, [id]);
 
-  console.log(data);
+
 
   if (loading) return <p>Loading...</p>; // 로딩 중 화면
   if (error) return <p>Error: {error.message}</p>; // 에러 화면
