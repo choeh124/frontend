@@ -1,6 +1,6 @@
 import "./PostImgContent.css";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 export default function PostImgContent({ data }) {
   const { id: postId, title, image, content, createdAt, nickname, viewCount } = data;
   const navigate = useNavigate();
@@ -17,8 +17,7 @@ export default function PostImgContent({ data }) {
     });
   };
 
-  // Debug postId
-  console.log('Post ID for editing:', postId);
+
 
   return (
     <div className="PostImgContent">
@@ -38,11 +37,13 @@ export default function PostImgContent({ data }) {
           onClick={async () => {
             if (window.confirm('정말로 삭제하시겠습니까?')) {
               try {
-                await axiosInstance.delete(`/posts/${postId}`);
+                await axios.delete(`http://127.0.0.1:8000/posts/${postId}`, {
+                 headers : {Authorization : window.sessionStorage.getItem("Authorization")}
+                });
                 alert('게시물이 삭제되었습니다.');
                 navigate('/posts');
               } catch (error) {
-                console.error('삭제 실패:', error);
+          
                 alert('게시물 삭제에 실패했습니다.');
               }
             }

@@ -32,7 +32,7 @@ export default function SignOut() {
                 setId(data.id);
             })
             .catch((error) => {
-                console.error("Error:", error); // 오류 처리
+         
             });
         };
 
@@ -70,7 +70,7 @@ export default function SignOut() {
             window.location.href = '/';
         })
         .catch((error) => {
-            console.error("Error:", error);
+          
         });
     };
 

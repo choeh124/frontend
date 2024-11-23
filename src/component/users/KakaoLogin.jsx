@@ -17,8 +17,8 @@ function KakaoLogin() {
         redirectUri: result.kakaoRedirectURI,
       });
     } catch (err) {
-    //   alert('로그인이 정상적으로 완료되지 않았습니다. 새로고침 이후 다시 시도해 주세요.');
-    console.log(err)
+      // alert('로그인이 정상적으로 완료되지 않았습니다. 새로고침 이후 다시 시도해 주세요.');
+console.log(err)
     }
   }
 

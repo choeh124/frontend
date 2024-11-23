@@ -32,7 +32,7 @@ export default function UserUpdate() {
           setId(data.id);
         })
         .catch((error) => {
-          console.error("Error:", error); // 오류 처리
+    
         });
     };
 

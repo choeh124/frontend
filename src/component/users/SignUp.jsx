@@ -49,7 +49,7 @@ export default function SignUp() {
         alert('메일로 전송된 인증번호를 입력해 주세요');
     })
     .catch((error) => {
-        console.error("Error:", error); // 오류 처리
+   
     });
 };
 
@@ -75,11 +75,10 @@ fetch("http://localhost:8000/api/auth/signup", {
 
     alert('회원가입 되었습니다.');
     window.sessionStorage.setItem("Authorization", data.accessToken)
-    console.log("Auth Session Storage", window.sessionStorage.getItem("Authorization"))
     window.location.href = '/';
   })
   .catch((error) => {
-    console.error("Error:", error); // 오류 처리
+    
   });
 };
 
@@ -102,11 +101,10 @@ const handleVerifySubmit = (e) => {
       return response;
     })
     .then((data) => {
-      console.log(data); // 응답 데이터 출력
       alert('인증되었습니다.');
     })
     .catch((error) => {
-      console.error("Error:", error); // 오류 처리
+    
     });
   }
   return (

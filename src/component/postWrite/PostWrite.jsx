@@ -10,7 +10,7 @@ import './WriteImage.css'
 export default function PostWrite(){
 
     const authorization = window.sessionStorage.getItem("Authorization")
-    console.log(authorization);
+
 
 
     // Form 데이터 상태 관리
@@ -60,16 +60,16 @@ export default function PostWrite(){
 
     try {
       // 서버로 POST 요청
-      const response = await axios.post('//localhost:8000/api/posts', data, {
+      const response = await axios.post('http://localhost:8000/api/posts', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization : authorization
         },
       });
-      console.log('응답 데이터:', response.data);
+  
       alert('업로드 성공!');
     } catch (error) {
-      console.error('업로드 실패:', error);
+
       alert('업로드 실패!');
     }
   };

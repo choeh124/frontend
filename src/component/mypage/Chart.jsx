@@ -43,9 +43,6 @@ export default function Chart() {
           }
         );
 
-        // 응답 데이터 확인
-        console.log(response.data); // 서버 응답 데이터 확인
-
         // 서버에서 받은 데이터 처리
         const labels = [];
         const datas = [];
@@ -54,8 +51,7 @@ export default function Chart() {
           datas.push(Number(item.count)); // 데이터를 숫자로 변환
         });
 
-        console.log(labels); // labels 확인
-        console.log(datas); // datas 확인
+   
 
         // 차트 데이터를 설정
         setData({
@@ -72,7 +68,7 @@ export default function Chart() {
           ],
         });
       } catch (error) {
-        console.error("데이터 로드 실패:", error);
+
       } finally {
         setIsLoading(false); // 로딩 상태 종료
       }
