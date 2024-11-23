@@ -4,26 +4,32 @@ import "./Header.css";
 
 export default function Header() {
   const authorization = window.sessionStorage.getItem("Authorization");
-  console.log(authorization);
-  const [isLogined, setIsLogined] = useState(true);
+  const [isLogined, setIsLogined] = useState(false);
   useEffect(() => {
     async function authCheck() {
-      const response = await axios.get("http://127.0.0.1:8000/api/auth/check", {
-        headers: { Authorization: authorization },
-      });
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/auth/check",
+          {
+            headers: { Authorization: authorization },
+          }
+        );
 
-      if (
-        !response.statusText == "OK" &&
-        !(
-          window.location.pathname == "/login" ||
-          window.location.pathname == "/login/email" ||
-          window.location.pathname == "/"
-        )
-      ) {
-        alert("로그인이 필요한 서비스입니다.");
-        window.location.href = "/login";
-      }
-      setIsLogined(true);
+        if (response.statusCode == 401) {
+          setIsLogined(false);
+          if (
+            !(
+              window.location == "/" &&
+              window.location == "/posts" &&
+              window.location == "/login"
+            )
+          ) {
+            alert("로그인이 필요한 페이지입니다.");
+          }
+        } else {
+          setIsLogined(true);
+        }
+      } catch (err) {}
     }
     authCheck();
   }, []);
