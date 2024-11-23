@@ -9,6 +9,7 @@ import axios from 'axios';
 
 export default function PostEdit() {
     const { id: postId } = useParams(); // URL에서 게시물 ID 추출
+    console.log(postId)
     console.log('Editing post ID:', postId);
     const authorization = window.sessionStorage.getItem("Authorization");
 
@@ -73,7 +74,7 @@ export default function PostEdit() {
         if (file) data.append('file', file);
 
         try {
-            const response = await axios.put(`http://localhost:8000/api/posts/${postId}`, data, {
+            const response = await axios.patch(`http://localhost:8000/api/posts/${postId}`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: authorization
