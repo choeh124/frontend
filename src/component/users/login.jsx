@@ -29,7 +29,10 @@ export default function Login() {
             </svg>
             이메일 로그인
           </button>
-          <img src="./kakao_login_large_wide.png" />
+          <img src="./kakao_login_large_wide.png" onClick={(e) => {
+              e.preventDefault();
+              window.location.href = "/login/kakao";
+            }}/>
         </div>
       </div>
       <Footer />
