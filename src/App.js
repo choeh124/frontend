@@ -15,6 +15,7 @@ import GroupPage from "./component/groupPage/GroupPage.jsx";
 import MusicPage from "./component/musicPage/MusicPage.jsx";
 import UserUpdate from "./component/mypage/UserUpdate.jsx";
 import SignOut from "./component/users/SignOut.jsx";
+import KakaoLogin from "./component/users/KakaoLogin.jsx";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/music" element={<MusicPage />} />
           <Route path="/user/edit" element={<UserUpdate />} />
           <Route path="/user/signout" element={<SignOut />} />
+          <Route path="/login/kakao" element={<KakaoLogin />} />
         </Routes>
       </Router>
     </div>
