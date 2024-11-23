@@ -4,14 +4,14 @@ import "./Header.css";
 
 export default function Header() {
   const authorization = window.sessionStorage.getItem("Authorization");
-  console.log(authorization)
+  console.log(authorization);
   const [isLogined, setIsLogined] = useState(true);
   useEffect(() => {
     async function authCheck() {
       const response = await axios.get("http://127.0.0.1:8000/api/auth/check", {
         headers: { Authorization: authorization },
       });
-   
+
       if (
         !response.statusText == "OK" &&
         !(
@@ -40,26 +40,6 @@ export default function Header() {
         </h1>
 
         {isLogined ? (
-          <div className="buttonBox">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/login";
-              }}
-            >
-              로그인
-            </button>
-            <button
-              className="blue"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "/signup";
-              }}
-            >
-              회원 가입
-            </button>
-          </div>
-        ) : (
           <div className="buttonBox">
             <button>채팅</button>
             <button>로그아웃</button>
@@ -93,6 +73,26 @@ export default function Header() {
                   stroke-linejoin="round"
                 />
               </svg>
+            </button>
+          </div>
+        ) : (
+          <div className="buttonBox">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/login";
+              }}
+            >
+              로그인
+            </button>
+            <button
+              className="blue"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "/signup";
+              }}
+            >
+              회원 가입
             </button>
           </div>
         )}
