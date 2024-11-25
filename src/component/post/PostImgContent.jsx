@@ -4,6 +4,7 @@ import axios from "axios";
 export default function PostImgContent({ data }) {
   const { id: postId, title, image, content, createdAt, nickname, viewCount } = data;
   const navigate = useNavigate();
+  const authorization = window.sessionStorage.getItem("Authorization")
 
   const endpoint = 'https://stimgshortwalk.blob.core.windows.net/images/';
   const url = image ? endpoint + image : null;
@@ -37,8 +38,9 @@ export default function PostImgContent({ data }) {
           onClick={async () => {
             if (window.confirm('정말로 삭제하시겠습니까?')) {
               try {
-                await axios.delete(`http://127.0.0.1:8000/posts/${postId}`, {
-                 headers : {Authorization : window.sessionStorage.getItem("Authorization")}
+                await axios.delete(`http://localhost:8000/api/posts/${postId}`, {
+                 headers : {
+                  Authorization : authorization}
                 });
                 alert('게시물이 삭제되었습니다.');
                 navigate('/posts');
@@ -55,3 +57,7 @@ export default function PostImgContent({ data }) {
     </div>
   );
 }
+
+
+// localhost:8000/api/posts/a5f97b4c-668f-47d3-96b7-4825df015e5e
+// http://127.0.0.1:8000/posts/${postId}
