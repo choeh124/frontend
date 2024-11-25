@@ -1,9 +1,32 @@
-.CommentList > div{
-    width: 714px;
+.CommentList .CommentListContent{
+    min-width: 714px;
     border: solid 1px #D4D2E3;
     border-radius: 24px;
-    padding: 36px 0px 36px 29px; 
+    padding: 36px 29px 36px 29px; 
+    box-sizing: border-box;
     margin-bottom: 11px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+/* 수정삭제 */
+.CommentList .CommentListContent .CLCbutton button{
+    background-color: white;
+    border: none;
+    color: #0094FF;
+    display: inline-block;
+    margin-left: 16px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 신고 */
+.CommentList .CommentListContent .CLCbutton .CLCReportComment{
+    color: #F84031;
 }
 
 .CommentList :last-child{
