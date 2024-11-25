@@ -86,20 +86,18 @@ export default function PostWrite(){
                             {preview? <img src={preview} alt="" />:<div className=''></div>}
                             <input type="file" accept="image/*" onChange={handleFileChange} />
                             <div className='WimageInfo'>
-                                <p></p>
-                                <p></p>
                             </div>
                         </div>
 
                         <div className='WriteText'>
-                            <form action="">
+                            <form onSubmit={handleSubmit}>
                                 <div className='text-box'>
                                     <input type="text" placeholder="제목을 입력해 주세요" name="title" value={formData.title} onChange={handleChange} required />
                                     <input type="category" placeholder="카테고리를 입력해 주세요" name="category" value={formData.category} onChange={handleChange} required />
                                     <textarea className='WTcontent' type="text" placeholder="본문을 입력해 주세요"  name="content" value={formData.content} onChange={handleChange} required></textarea>
                                     <div className='write-button-box'>
                                         <button onClick={()=>{ window.location.href = `/posts` }} >취소</button>
-                                        <button onClick={handleSubmit}>완료</button>
+                                        <button type='submit' onClick={()=>{ window.location.href = `/posts` }}>완료</button>
                                     </div>
                                 </div>
                             </form>
