@@ -1,23 +1,39 @@
-import "./CommentList.css"
+// import axios from "axios"
+// import { useEffect, useState } from "react"
+// import "./CommentList.css"
+// import { useParams } from "react-router-dom"
 
-export default function CommentList(){
-    return(
-        <div className="commenList">
-            <div>
-                <h3>👟  seoulsoup 님이 다음 산책에 당첨되셨습니다! 짧은산책 후기를 부탁드려요!</h3>
-                <p>운영진</p>
-                <p>2024. 10. 30.</p>
-            </div>
-            <div>
-                <h3>주변에 감성산책이라는 카페에 들러보세요.</h3>
-                <p>seoulsoup</p>
-                <p>2024. 10. 30.</p>
-            </div>
-            <div>
-                <h3>너무 너무 좋네요.</h3>
-                <p>seoulsoup</p>
-                <p>2024. 10. 30.</p>
-            </div>
-        </div>
-    )
-}
+// export default function CommentList(){
+//     const [comments, setComments] = useState([]);
+//     const {id} = useParams();
+
+//     useEffect(()=>{
+//         const findComments = async ()=>{
+//             const response = await axios.get(`http://localhost:8000/api/posts/${id}/comments`,{
+//             })
+//             const data = response.data;
+//             setComments(data);
+//         };
+//       findComments();
+
+//     },[]);
+//     // console.log(comments);
+
+//     return(
+//         <div className="commenList">
+//             {comments.map((comment)=>{
+//                 const {content, nickname, createdAt} = comments;
+//                 return(
+//                     <div>
+//                     <h3>{content}</h3>
+//                     <p>{nickname}</p>
+//                     <p>{createdAt}.</p>
+//                     </div> 
+//                 )
+//             })}
+
+//         </div>
+//     )
+// }
+
+
