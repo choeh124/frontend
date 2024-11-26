@@ -76,3 +76,25 @@ h1 {
   height: 40px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .container {
+    min-height: 800px;
+  }
+  .form-container {
+    min-height: 700px;
+  }
+  .form-row {
+    flex-direction: column !important;
+  }
+  input {
+    width: 100%;
+  }
+  .form-container buttonn {
+    width: 100%;
+  }
+  label {
+    width: 200px !important;
+  }
+}
+@media screen and (max-width: 480px) {
+}
