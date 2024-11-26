@@ -53,6 +53,7 @@ export default function PostImgContent({ data }) {
         >
           삭제
         </button>
+        <button>신고</button>
       </div>
     </div>
   );

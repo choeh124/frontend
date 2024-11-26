@@ -39,8 +39,8 @@
 }
 
 .PostImgContent .PIButtonContent{}
-.PostImgContent .PIButtonContent button:first-child{
-  margin-right: 12px;
+.PostImgContent .PIButtonContent button:last-child{
+  margin-right: 0px;
 }
 .PostImgContent .PIButtonContent button{
   width: 101px;
@@ -52,8 +52,13 @@
   font-weight: bold;
   color: #fff;
   cursor: pointer;
+  margin-right: 12px;
 }
 
 .PostImgContent .PIButtonContent button:hover{
   background-color: #0094FF;
+}
+
+.PostImgContent .PIButtonContent button:last-child:hover{
+  background-color: red;
 }

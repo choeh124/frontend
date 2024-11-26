@@ -9,11 +9,16 @@ import { useState, useEffect } from "react";
 
 
 export default function PostCommentContent() {
-  const {id} = useParams();
+  const {id:postId} = useParams();
+  // id:postid 유저아이디
+  // id 댓글 아이디
   const authorization = window.sessionStorage.getItem("Authorization")
 
   const [content, setContent] = useState(""); //댓글입력 상태
   const [comments, setComments] = useState([]);//댓글목록 상태
+
+  const [editingCommentId, setEditingCommentId] = useState(null); // 수정 중인 댓글 ID
+  const [editingContent, setEditingContent] = useState(""); // 수정 중인 댓글 내용
 
     //===댓글 입력창===
     const handleSubmin = (e)=>{
@@ -25,7 +30,7 @@ export default function PostCommentContent() {
 
         try{
             const commentwite = async ()=>{
-                const response = await axios.post(`http://localhost:8000/api/posts/${id}/comments`,
+                const response = await axios.post(`http://localhost:8000/api/posts/${postId}/comments`,
                     {content},
                     {
                         headers:{
@@ -47,7 +52,7 @@ export default function PostCommentContent() {
     useEffect(()=>{
         const findComments = async ()=>{
           try{
-            const response = await axios.get(`http://localhost:8000/api/posts/${id}/comments`,{
+            const response = await axios.get(`http://localhost:8000/api/posts/${postId}/comments`,{
             })
             setComments(response.data);
           }catch(error){};
@@ -55,6 +60,47 @@ export default function PostCommentContent() {
         findComments();
       },[content]);
 
+
+// 댓글 수정 시작
+const startEditing = (id, currentContent) => {
+  setEditingCommentId(id);
+  setEditingContent(currentContent);
+};
+
+
+// 댓글 수정 저장
+const saveEditing = async (id) => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:8000/api/posts/${postId}/comments/${id}`,
+      { content: editingContent },
+      {
+        headers: {
+          Authorization: authorization,
+        },
+      }
+    );
+
+    setComments(
+      comments.map((comment) =>
+        comment.id === id ? { ...comment, content: response.data.content } : comment
+      )
+    );
+    setEditingCommentId(null); // 수정 모드 종료
+  } catch (error) {}
+};
+
+// 댓글 수정 취소
+const cancelEditing = () => {
+  setEditingCommentId(null);
+  setEditingContent("");
+};
+
+
+
+
+
+  
 
   return (
     <div className="PostCommentContent">
@@ -88,29 +134,42 @@ export default function PostCommentContent() {
             {comments.map((comm)=>{
                 const {content, nickname, createdAt} = comm;
                 return(
-                    <div className='CommentListContent'>
-                      {/* {console.log(`댓글id ${comm.id}`)} */}
-                      {/* {console.log(`post ${id}`)} */}
-                      {console.log(`http://localhost:8000/api/posts/${id}/comments/${comm.id}`)}
+                    <div key={comm.id} className='CommentListContent'>
                       <div className='CLCdetail'>
-                        <h3>{content}</h3>
-                        <p>{nickname}</p>
-                        <p>{createdAt.split("T")[0]}</p>
+                          {editingCommentId === comm.id ? (
+                              <div>
+                                <input
+                                  value={editingContent}
+                                  onChange={(e) => setEditingContent(e.target.value)}
+                                />
+                                <button onClick={() => saveEditing(comm.id)}>저장</button>
+                                <button onClick={cancelEditing}>취소</button>
+                              </div>
+                            ) : (
+                              <>
+                                <h3>{content}</h3>
+                                <p>{nickname}</p>
+                                <p>{createdAt.split("T")[0]}</p>
+                              </>
+                            )}
                       </div>
                       <div className='CLCbutton'>
                         <button className='CLCReportComment'>
                           신고
                         </button>
-                        {/* =====댓글수정 */}
-                        <button
-                         
-                        >수정</button>
+                        
+                          {/* 댓글 수정 */}
+                          {editingCommentId !== comm.id && (
+                            <button onClick={() => startEditing(comm.id, content)}>수정</button>
+                          )}
+
+
                         {/* =====댓글삭제 */}
                         <button
                         onClick={async () =>{
                           if(window.confirm("댓글을 삭제하시겠습니까?")){
                             try{
-                              await axios.delete(`http://localhost:8000/api/posts/${id}/comments/${comm.id}`,{
+                              await axios.delete(`http://localhost:8000/api/posts/${postId}/comments/${comm.id}`,{
                                 headers: {
                                   Authorization: authorization
                                 },
