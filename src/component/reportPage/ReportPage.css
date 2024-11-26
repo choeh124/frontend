@@ -1,0 +1,36 @@
+.report-box {
+  border: 1px solid #d4d2e3;
+  border-radius: 20px;
+  width: 30%;
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.container {
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+}
+.report-inner-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.report-input {
+  width: 22vw;
+}
+
+.report-button {
+  background-color: #42adfb;
+  color: white;
+  height: 5vh;
+  border-radius: 10px;
+  width: 29vw;
+  border: none;
+}

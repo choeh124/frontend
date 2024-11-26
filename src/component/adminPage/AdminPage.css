@@ -67,11 +67,16 @@
 .group-name {
   width: 29vw;
 }
-.group-delete-button {
+.group-delete-button,
+.notice-button {
   background-color: #42adfb;
   color: white;
   height: 5vh;
   border-radius: 10px;
   width: 34vw;
   border: none;
+}
+.notice {
+  width: 34vw;
+  height: auto;
 }

@@ -1,25 +1,89 @@
-.PostCommentContent{
-    margin-bottom: 24px;
-    position: relative;
+/* General Styles for Post Comment */
+.PostCommentContent {
+  margin-bottom: 24px;
+  position: relative;
 }
 
-.PostCommentContent > button{
-    position: absolute; /* 버튼을 부모 요소 내부의 절대 위치로 설정 */
-    bottom: 104%;
-    left: 100%;
-    transform: translateX(-100%);
-    width: 32px;
-    height: 32px;
-    border-radius: 17px;
-    border: none;
-    background-color: #DCDCDC;
-    cursor: pointer;
-    display: flex;
+.PostCommentContent > button {
+  position: absolute; /* Place button inside parent with absolute positioning */
+  bottom: 104%;
+  left: 100%;
+  transform: translateX(-100%);
+  width: 32px;
+  height: 32px;
+  border-radius: 17px;
+  border: none;
+  background-color: #dcdcdc;
+  cursor: pointer;
+  display: flex;
 }
-.PostCommentContent > button svg{}
 
-p{
-    font-size: 18px;
-    line-height: 30px;
-    color: #A0A3BD;
+/* Paragraph Styles */
+p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #a0a3bd;
+}
+
+/* Comment List Buttons */
+.CLCbutton {
+  width: 45vw;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  /* For tablets and smaller screens */
+  .PostCommentContent > button {
+    width: 28px;
+    height: 28px;
+  }
+
+  p {
+    font-size: 16px; /* Adjust font size for better readability on tablets */
+    line-height: 28px;
+  }
+
+  .CLCbutton {
+    width: 60vw; /* Increase width for better layout on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  /* For mobile screens */
+  .PostCommentContent > button {
+    width: 26px;
+    height: 26px;
+  }
+
+  p {
+    font-size: 14px; /* Further reduce font size for mobile */
+    line-height: 24px;
+  }
+
+  .CLCbutton {
+    width: 70vw; /* Further increase width for mobile */
+    justify-content: flex-start; /* Align buttons to the left for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  /* For very small mobile screens */
+  .PostCommentContent > button {
+    width: 24px;
+    height: 24px;
+  }
+
+  p {
+    font-size: 12px; /* Small font size for very small screens */
+    line-height: 22px;
+  }
+
+  .CLCbutton {
+    width: 80vw; /* Almost full width for small screens */
+    justify-content: flex-start; /* Keep buttons aligned to the left */
+  }
 }

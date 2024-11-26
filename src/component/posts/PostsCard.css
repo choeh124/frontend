@@ -21,13 +21,10 @@
   min-width: 280px;
 }
 
-
-
-
 /* 이미지 스타일 */
 .PostsCard img {
   width: 100%;
-  height: auto;
+  height: 200px;
   border-radius: 24px;
   background-color: antiquewhite;
 }
@@ -67,6 +64,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.viewcount {
+  filter: grayscale(100%);
+  opacity: 0.4;
+  padding-right: 5px;
 }
 
 /* 화면 크기가 1024px 이하일 때 (태블릿 화면) */
