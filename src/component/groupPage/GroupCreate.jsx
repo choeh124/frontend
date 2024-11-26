@@ -37,7 +37,7 @@ export default function GroupCreate() {
                 return response.json();
             })
             .then((data) => {
-                //window.location.href = "/posts";
+                window.location.href = "/group";
             })
             .catch((error) => { });
     };
