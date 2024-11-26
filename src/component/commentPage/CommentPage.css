@@ -1,0 +1,18 @@
+.comment-box {
+  border: 1px solid #d4d2e3;
+  border-radius: 20px;
+  width: 30%;
+  padding: 70px 100px;
+}
+.container {
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+}
+.comment-inner-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
