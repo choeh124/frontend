@@ -82,14 +82,14 @@
   }
 
   .WriteContent input {
-    width: 80vw; /* Almost full width on small mobile */
+    width: 70vw; /* Almost full width on small mobile */
     height: 38px; /* Adjust height for better proportions */
     padding-left: 12px; /* Adjust padding for small screens */
     margin-bottom: 8px; /* Space between input and button */
   }
 
   .WriteContent button {
-    width: 80vw; /* Make button width the same as input on very small screens */
+    width: 70vw; /* Make button width the same as input on very small screens */
     height: 38px; /* Adjust button height for consistency */
     font-size: 12px; /* Smaller font size for very small screens */
   }
