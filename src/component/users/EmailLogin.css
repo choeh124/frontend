@@ -1,91 +1,178 @@
-/* 컨테이너 설정 */
-
+/* Container Setup */
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0px;
+  padding: 40px 0;
+  width: 100%;
 }
 
+/* Form Container */
 .form-container {
   display: flex;
-  flex-direction: column; /* 각 항목을 세로로 나열 */
-  gap: 20px; /* 항목 사이에 간격 */
-  border: 1px solid #d4d2e3; /* 테두리 설정 */
-  border-radius: 24px; /* 테두리 둥글게 */
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #d4d2e3;
+  border-radius: 24px;
   align-items: flex-start;
   justify-content: center;
-  height: 60vh; /* 화면의 50% 높이 */
-  padding: 20px 60px; /* 내부 여백 추가 */
-  box-sizing: border-box; /* padding 포함하여 크기 계산 */
+  height: auto; /* Make form container height responsive */
+  padding: 20px 60px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px; /* Set a maximum width to avoid it stretching too wide on large screens */
 }
 
-/* 폼 항목(각 라벨, 입력, 버튼)을 가로로 나열 */
+/* Form Row (Label + Input) */
 .form-row {
   display: flex;
-  flex-direction: row; /* 각 항목을 가로로 나열 */
-  gap: 20px; /* 항목 사이에 간격 */
+  flex-direction: column; /* Change to column layout on small screens */
+  gap: 10px;
+  width: 100%;
 }
 
-/* 각 항목 설정 */
+/* Individual Form Item */
 .form-item {
   display: flex;
-  align-items: center; /* 텍스트와 입력 필드를 세로로 정렬 */
-  gap: 10px; /* 항목 사이에 간격 */
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
-/* 레이블 스타일 */
+/* Label Styling */
 label {
   font-size: 14px;
-  color: #42adfb; /* 레이블 색상 설정 */
-  width: 70px;
+  color: #42adfb;
+  width: 100px; /* Ensure label has consistent width */
 }
 
-/* 입력 필드 스타일 */
+/* Input Field Styling */
 .input2 {
-  padding: 5px;
+  padding: 10px;
   font-size: 14px;
-  width: 200px; /* 너비를 지정하여 균일하게 보이도록 */
-  border: 1px solid #ccc; /* 입력 필드의 테두리 */
-  border-radius: 4px; /* 입력 필드 테두리 둥글게 */
+  width: 100%; /* Make the input field take up full width */
+  max-width: 300px; /* Limit the max width of the input */
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-/* 버튼 스타일 */
+/* Button Styling */
 .button2 {
-  padding: 5px 10px;
-  font-size: 14px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  border: 1px solid #42adfb; /* 버튼 테두리 색상 */
-  border-radius: 4px; /* 버튼 둥글게 */
-  background-color: #fff; /* 버튼 배경색 */
-  color: #42adfb; /* 버튼 텍스트 색상 */
+  border: 1px solid #42adfb;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #42adfb;
+  width: 100%; /* Make buttons responsive */
+  max-width: 300px; /* Ensure the button doesn't stretch too wide */
 }
 
-/* 버튼 호버 효과 */
+/* Button Hover Effect */
 .button2:hover {
-  background-color: #42adfb; /* 버튼 배경 색상 변경 */
-  color: white; /* 버튼 텍스트 색상 변경 */
+  background-color: #42adfb;
+  color: white;
 }
 
+/* Heading Styling */
 h1 {
   font-size: 24px;
   color: #5d5a88;
 }
 
+/* Special Button (Right-aligned) */
 .special-button {
-  margin-left: auto; /* 오른쪽 정렬 */
+  margin-left: auto;
   margin-right: 0;
 }
 
+/* Icon Styling */
 .mail-icon {
-  transition: fill 1s ease; /* 색상 변화가 부드럽게 전환되도록 설정 */
-}
-
-.mail-icon {
+  transition: fill 1s ease;
   margin-right: 5px;
 }
 
+/* Hover Effect for Special Button */
 .special-button:hover path {
   fill: #fff;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and below (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .form-container {
+    padding: 20px; /* Reduce padding for smaller screens */
+    width: 90%; /* Make form take up more of the screen on tablets */
+  }
+
+  .input2 {
+    max-width: 90%; /* Allow inputs to take up more space */
+  }
+
+  .button2 {
+    max-width: 90%; /* Buttons should also take up more space */
+  }
+
+  label {
+    font-size: 13px; /* Reduce font size for labels */
+  }
+
+  h1 {
+    font-size: 22px; /* Slightly smaller heading on tablets */
+  }
+}
+
+/* For smaller devices (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .form-row {
+    flex-direction: column; /* Stack label and input vertically */
+    gap: 12px; /* Increase gap for readability */
+  }
+
+  .form-item {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .input2 {
+    width: 100%;
+    padding: 12px; /* Add more padding for better tap targets */
+  }
+
+  .button2 {
+    width: 100%;
+    padding: 15px 20px; /* Make buttons larger for mobile */
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 20px; /* Reduce heading font size for mobile */
+  }
+}
+
+/* For very small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .form-container {
+    padding: 15px; /* Reduce padding even further */
+  }
+
+  label {
+    font-size: 12px; /* Further reduce label font size */
+  }
+
+  .input2 {
+    font-size: 14px; /* Slightly smaller input font */
+  }
+
+  .button2 {
+    font-size: 16px; /* Adjust button font size for small devices */
+    padding: 12px 15px; /* Adjust button padding for small screens */
+  }
+
+  h1 {
+    font-size: 18px; /* Make heading smaller for small screens */
+  }
 }
