@@ -17,11 +17,10 @@
   border-radius: 24px;
   align-items: flex-start;
   justify-content: center;
-  height: auto; /* Make form container height responsive */
+  height: 30vh !important; /* Make form container height responsive */
   padding: 20px 60px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 600px; /* Set a maximum width to avoid it stretching too wide on large screens */
 }
 
 /* Form Row (Label + Input) */
@@ -51,8 +50,7 @@ label {
 .input2 {
   padding: 10px;
   font-size: 14px;
-  width: 100%; /* Make the input field take up full width */
-  max-width: 300px; /* Limit the max width of the input */
+  width: 30vw !important; /* Make the input field take up full width */
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -106,10 +104,11 @@ h1 {
   .form-container {
     padding: 20px; /* Reduce padding for smaller screens */
     width: 90%; /* Make form take up more of the screen on tablets */
+    height: 30vh !important;
   }
 
   .input2 {
-    max-width: 90%; /* Allow inputs to take up more space */
+    width: 50vw !important; /* Allow inputs to take up more space */
   }
 
   .button2 {
@@ -138,7 +137,7 @@ h1 {
   }
 
   .input2 {
-    width: 100%;
+    width: 50vw !important;
     padding: 12px; /* Add more padding for better tap targets */
   }
 
@@ -157,6 +156,7 @@ h1 {
 @media screen and (max-width: 480px) {
   .form-container {
     padding: 15px; /* Reduce padding even further */
+    height: 30vh !important;
   }
 
   label {
