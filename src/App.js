@@ -16,6 +16,8 @@ import UserUpdate from "./component/mypage/UserUpdate.jsx";
 import SignOut from "./component/users/SignOut.jsx";
 import KakaoLogin from "./component/users/KakaoLogin.jsx";
 import CommentPage from "./component/commentPage/CommentPage.jsx";
+import GroupCreate from "./component/groupPage/GroupCreate.jsx";
+import GroupUpdate from "./component/groupPage/GroupUpdate.jsx";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           <Route path="/login/kakao" element={<KakaoLogin />} />
           <Route path="/login/kakao" element={<KakaoLogin />} />
           <Route path="/comments/:id" element={<CommentPage />} />
+          <Route path="/groups/create" element={<GroupCreate />} />
+          <Route path="/groups/:id/update" element={<GroupUpdate />} />
         </Routes>
       </Router>
     </div>
