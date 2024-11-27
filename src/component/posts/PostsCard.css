@@ -78,7 +78,7 @@
     width: 90%;
   }
 
-  .PostsCard div {
+  .PostsCard > div {
     flex: 0 0 48%;
   }
 }
@@ -89,7 +89,7 @@
     width: 100%;
   }
 
-  .PostsCard div {
+  .PostsCard > div {
     flex: 0 0 100%;
   }
 }

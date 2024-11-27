@@ -38,8 +38,12 @@ export default function Header() {
     authCheck();
   }, [authorization]);
 
+  function logout() {
+    sessionStorage.removeItem("Authorization");
+    window.location.reload();
+  }
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Toggle the menu visibility
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -64,8 +68,23 @@ export default function Header() {
           <div className={`navMenu ${isMenuOpen ? "active" : ""}`}>
             {isLogined ? (
               <div className="buttonBox">
-                <button>채팅</button>
-                <button>로그아웃</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "/posts";
+                  }}
+                >
+                  게시판
+                </button>
+                <button>그룹</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                  }}
+                >
+                  로그아웃
+                </button>
                 <button
                   className="blue"
                   onClick={(e) => {
@@ -100,6 +119,14 @@ export default function Header() {
               </div>
             ) : (
               <div className="buttonBox">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "/posts";
+                  }}
+                >
+                  게시판
+                </button>
                 <button
                   onClick={(e) => {
                     e.preventDefault();

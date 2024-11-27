@@ -20,7 +20,7 @@
   height: 30vh !important; /* Make form container height responsive */
   padding: 20px 60px;
   box-sizing: border-box;
-  width: 100%;
+  width: 40%;
 }
 
 /* Form Row (Label + Input) */

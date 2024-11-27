@@ -11,10 +11,13 @@ export default function AdminPage() {
   const [reports, setReports] = useState([]);
   useEffect(() => {
     const authorization = sessionStorage.getItem("Authorization");
-    async function fetchTotalPages() {
-      const response = await axios.get("http://127.0.0.1:8000/api/reports", {
-        headers: { Authorization: authorization },
-      });
+    async function fetchReports() {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/reports?page=${currentPage}`,
+        {
+          headers: { Authorization: authorization },
+        }
+      );
       setReports(response.data.count);
       console.log(reports);
     }
@@ -27,6 +30,7 @@ export default function AdminPage() {
       console.log(totalPages);
     }
     fetchTotalPages();
+    fetchReports();
   }, []);
   return (
     <div>

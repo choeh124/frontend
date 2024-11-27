@@ -19,7 +19,7 @@ export default function PostsCard({ posts }) {
             {url ? (
               <img src={url} alt={url} />
             ) : (
-              <div className="no-image"></div>
+              <div className="no-image">이미지 없음</div>
             )}
             <h3>{post.title}</h3>
             <p>{post.nickname}</p>

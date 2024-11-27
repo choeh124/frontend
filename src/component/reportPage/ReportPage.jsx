@@ -9,8 +9,10 @@ export default function ReportPage() {
   const [reportTitle, setReportTitle] = useState("");
   const [reportContent, setReportContent] = useState("");
   const body = { contentType, contentId, reportTitle, reportContent };
-  const authorization = sessionStorage.getItem("Authorization");
+
   async function report() {
+    const authorization = window.sessionStorage.getItem("Authorization");
+    console.log(authorization);
     const response = await axios.post(
       `http://127.0.0.1:8000/api/reports`,
       body,
@@ -31,7 +33,9 @@ export default function ReportPage() {
       <Header />
       <div className="container">
         <div className="report-box">
-          <h1>신고 작성</h1>
+          <div className="title-box">
+            <h1>신고 작성</h1>
+          </div>
           <div className="report-inner-box">
             <label>신고 제목</label>
             <input
@@ -44,13 +48,13 @@ export default function ReportPage() {
           </div>
           <div className="report-inner-box">
             <label>신고 내용</label>
-            <input
+            <textarea
               className="report-input"
               type="text"
               onChange={(e) => {
                 setReportContent(e.target.value);
               }}
-            />
+            ></textarea>
           </div>
           <button
             className="report-button"

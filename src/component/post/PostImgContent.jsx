@@ -29,11 +29,7 @@ export default function PostImgContent({ data }) {
   return (
     <div className="PostImgContent">
       <div className="ImgBox">
-        {url ? (
-          <img src={url} alt="" />
-        ) : (
-          <div className="no-image">이미지 없음</div>
-        )}
+        {url ? <img src={url} alt="" /> : <div></div>}
       </div>
       <div className="PostComment">
         <h2>{title}</h2>
