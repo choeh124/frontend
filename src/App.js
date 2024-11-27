@@ -19,6 +19,8 @@ import CommentPage from "./component/commentPage/CommentPage.jsx";
 import GroupCreate from "./component/groupPage/GroupCreate.jsx";
 import GroupUpdate from "./component/groupPage/GroupUpdate.jsx";
 import ReportPage from "./component/reportPage/ReportPage.jsx";
+import FeedPage from "./component/feed/FeedPage.jsx";
+
 
 function App() {
   return (
@@ -47,6 +49,7 @@ function App() {
             path="/reports/:contentType/:contentId"
             element={<ReportPage />}
           />
+          <Route path="/groups/:groupId/feeds" element={<FeedPage />} />
         </Routes>
       </Router>
     </div>
