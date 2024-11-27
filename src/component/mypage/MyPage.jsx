@@ -6,10 +6,10 @@ export default function MyPage() {
   return (
     <div>
       <Header />
-      <div className="container">
+      <div className="mypage-container">
         <iframe src="map.html" title="Tmap Map" allowfullscreen></iframe>
         <Chart />
-        <div className="button-box">
+        <div className="mypage-button-box">
           <button
             className="user-edit-btn"
             onClick={(e) => {

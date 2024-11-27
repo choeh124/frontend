@@ -114,7 +114,7 @@
             {
               role: "system",
               content:
-                "너는 주어진 문장을 해석해서 도로명주소만을 배열에 담아 json으로 감싸 출력하는 AI야.",
+                "너는 주어진 문장을 해석해서 도로명주소만을 배열에 담아 json으로 감싸 출력하는 AI야. 산책 경로는 무조건 3km 내외로 추천해 줘야 해.",
             },
             {
               role: "user",
@@ -137,6 +137,7 @@
           alert(
             "AI가 과로하여 휴식이 필요합니다. 잠시 후에 다시 시도해 주세요."
           );
+          return;
         }
         const gptResult = await gptResponse.json();
         const cleanedResult = gptResult.choices[0].message.content
@@ -203,7 +204,7 @@
             center: new Tmapv2.LatLng(37.566481622437934, 126.98502302169841),
             width: "280px",
             height: "280px",
-            zoom: 15,
+            zoom: 14,
           });
         }
       }

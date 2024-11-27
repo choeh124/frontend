@@ -4,7 +4,8 @@ iframe {
   border: none;
 }
 
-.container {
+.mypage-container {
+  padding: 40px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -29,4 +30,9 @@ iframe {
 
 .user-delete-btn {
   background-color: #8d8ba7 !important;
+}
+.mypage-button-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

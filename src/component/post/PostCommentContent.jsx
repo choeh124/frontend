@@ -134,7 +134,15 @@ export default function PostCommentContent() {
                     <p>{nickname}</p>
                     <p>{createdAt.split("T")[0]}</p>
                     <div className="CLCbutton">
-                      <button className="CLCReportComment">신고</button>
+                      <button
+                        className="CLCReportComment"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = `http://127.0.0.1:3000/reports/comments/${comm.id}`;
+                        }}
+                      >
+                        신고
+                      </button>
 
                       {/* 댓글 수정 */}
                       {editingCommentId !== comm.id && (

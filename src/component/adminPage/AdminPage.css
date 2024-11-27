@@ -77,6 +77,8 @@
   border: none;
 }
 .notice {
+  border: #d4d2e3 1px solid;
+  border-radius: 10px;
   width: 34vw;
   height: auto;
 }

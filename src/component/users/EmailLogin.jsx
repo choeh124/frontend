@@ -44,28 +44,30 @@ export default function EmailLogin() {
   return (
     <div>
       <Header />
-      <div className="container">
-        <div className="form-container">
+      <div className="email-container">
+        <div className="email-form-container">
           <h1>로그인</h1>
-          <div className="form-row">
+          <div className="email-form-row">
             <label>E-mail</label>
             <input
               type="text"
               id="email"
-              className="input2"
+              className="email-login-input"
               onChange={handleInputChange}
             ></input>
           </div>
-          <div className="form-row">
+          <div className="email-form-row">
             <label>비밀번호</label>
             <input
               type="password"
               id="password"
-              className="input2"
+              className="email-login-input"
               onChange={handleInputChange}
             ></input>
           </div>
-          <button onClick={handleSubmit}>전송</button>
+          <button className="email-login-button" onClick={handleSubmit}>
+            전송
+          </button>
         </div>
       </div>
       <Footer />

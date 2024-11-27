@@ -1,15 +1,15 @@
 /* Container Setup */
-.container {
+.email-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  padding: 80px 20px;
   width: 100%;
 }
 
 /* Form Container */
-.form-container {
+.email-form-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -17,16 +17,17 @@
   border-radius: 24px;
   align-items: flex-start;
   justify-content: center;
-  height: 30vh !important; /* Make form container height responsive */
-  padding: 20px 60px;
+  padding: 60px;
   box-sizing: border-box;
-  width: 40%;
+  width: 100%;
+  max-width: 500px; /* Maximum width to keep the form from getting too wide */
+  margin: 0 auto; /* Center the form */
 }
 
 /* Form Row (Label + Input) */
-.form-row {
+.email-form-row {
   display: flex;
-  flex-direction: column; /* Change to column layout on small screens */
+  flex-direction: column; /* Stack label and input vertically by default */
   gap: 10px;
   width: 100%;
 }
@@ -43,20 +44,24 @@
 label {
   font-size: 14px;
   color: #42adfb;
-  width: 100px; /* Ensure label has consistent width */
+  width: 100%; /* Ensure label takes full width */
+  max-width: 120px; /* Limit width of the label */
+  white-space: nowrap;
 }
 
 /* Input Field Styling */
-.input2 {
+.email-login-input {
   padding: 10px;
   font-size: 14px;
-  width: 30vw !important; /* Make the input field take up full width */
+  width: 100%; /* Make input field take up full width */
+  max-width: 400px; /* Set maximum width for input */
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box; /* Prevent padding from affecting width */
 }
 
 /* Button Styling */
-.button2 {
+.email-login-button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -65,11 +70,12 @@ label {
   background-color: #fff;
   color: #42adfb;
   width: 100%; /* Make buttons responsive */
-  max-width: 300px; /* Ensure the button doesn't stretch too wide */
+  max-width: 400px; /* Ensure the button doesn't stretch too wide */
+  box-sizing: border-box;
 }
 
 /* Button Hover Effect */
-.button2:hover {
+.email-login-button:hover {
   background-color: #42adfb;
   color: white;
 }
@@ -78,6 +84,8 @@ label {
 h1 {
   font-size: 24px;
   color: #5d5a88;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Special Button (Right-aligned) */
@@ -101,78 +109,25 @@ h1 {
 
 /* For tablets and below (max-width: 1024px) */
 @media screen and (max-width: 1024px) {
-  .form-container {
-    padding: 20px; /* Reduce padding for smaller screens */
-    width: 90%; /* Make form take up more of the screen on tablets */
-    height: 30vh !important;
+  .email-form-container {
+    max-width: 300px;
   }
 
   .input2 {
-    width: 50vw !important; /* Allow inputs to take up more space */
-  }
-
-  .button2 {
-    max-width: 90%; /* Buttons should also take up more space */
-  }
-
-  label {
-    font-size: 13px; /* Reduce font size for labels */
-  }
-
-  h1 {
-    font-size: 22px; /* Slightly smaller heading on tablets */
-  }
-}
-
-/* For smaller devices (max-width: 768px) */
-@media screen and (max-width: 768px) {
-  .form-row {
-    flex-direction: column; /* Stack label and input vertically */
-    gap: 12px; /* Increase gap for readability */
-  }
-
-  .form-item {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .input2 {
-    width: 50vw !important;
+    width: 100%; /* Allow inputs to take up more space */
     padding: 12px; /* Add more padding for better tap targets */
   }
 
-  .button2 {
-    width: 100%;
-    padding: 15px 20px; /* Make buttons larger for mobile */
-    font-size: 18px;
+  .email-login-button {
+    width: 100%; /* Buttons should also take up more space */
+    font-size: 16px;
   }
 
   h1 {
-    font-size: 20px; /* Reduce heading font size for mobile */
-  }
-}
-
-/* For very small devices (max-width: 480px) */
-@media screen and (max-width: 480px) {
-  .form-container {
-    padding: 15px; /* Reduce padding even further */
-    height: 30vh !important;
+    font-size: 20px; /* Smaller heading font size for mobile */
   }
 
   label {
     font-size: 12px; /* Further reduce label font size */
-  }
-
-  .input2 {
-    font-size: 14px; /* Slightly smaller input font */
-  }
-
-  .button2 {
-    font-size: 16px; /* Adjust button font size for small devices */
-    padding: 12px 15px; /* Adjust button padding for small screens */
-  }
-
-  h1 {
-    font-size: 18px; /* Make heading smaller for small screens */
   }
 }

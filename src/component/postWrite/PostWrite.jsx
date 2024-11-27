@@ -90,7 +90,12 @@ export default function PostWrite() {
               ) : (
                 <div className=""></div>
               )}
-              <input type="file" accept="image/*" onChange={handleFileChange} />
+              <input
+                className="file-input"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
               <div className="WimageInfo"></div>
             </div>
 
