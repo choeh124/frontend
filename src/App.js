@@ -21,7 +21,6 @@ import GroupUpdate from "./component/groupPage/GroupUpdate.jsx";
 import ReportPage from "./component/reportPage/ReportPage.jsx";
 import FeedPage from "./component/feed/FeedPage.jsx";
 
-
 function App() {
   return (
     <div>
@@ -37,7 +36,7 @@ function App() {
           <Route path="/post/edit/:id" element={<PostEdit />} />
           <Route path="/login/email" element={<EmailLogin />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/group" element={<GroupPage />} />
+          <Route path="/groups" element={<GroupPage />} />
           <Route path="/user/edit" element={<UserUpdate />} />
           <Route path="/user/signout" element={<SignOut />} />
           <Route path="/login/kakao" element={<KakaoLogin />} />
