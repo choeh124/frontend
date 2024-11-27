@@ -76,7 +76,14 @@ export default function Header() {
                 >
                   게시판
                 </button>
-                <button>그룹</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "/groups";
+                  }}
+                >
+                  그룹
+                </button>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
