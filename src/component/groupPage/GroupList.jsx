@@ -17,13 +17,13 @@ export default function GroupList() {
             SetGroups(data);
         };
 
-        /*const findTotalPages = async () => {
+        const findTotalPages = async () => {
             const response = await axios.get(`http://127.0.0.1:8000/api/groups/count`);
             const data = response.data;
             setTotalPages(data.count);
-        };*/
+        };
         findGroup();
-        //findTotalPages();
+        findTotalPages();
     }, [currentPage]);
 
     return (

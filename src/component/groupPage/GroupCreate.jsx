@@ -24,7 +24,7 @@ export default function GroupCreate() {
             method: "POST", // POST 요청
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token,
+                "Authorization": token,
             },
             body: JSON.stringify({ groupName, description }),
         })

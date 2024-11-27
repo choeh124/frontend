@@ -9,7 +9,7 @@ export default function GroupOne({ groups }) {
                     <div className="">
                         <h3>{group.groupName}</h3>
                         <p>{group.description}</p>
-                        <p>{group.id}</p>
+                        <p>{group.leaderNickname}</p>
                     </div>
                 );
             })}
