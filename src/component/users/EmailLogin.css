@@ -1,91 +1,133 @@
-/* 컨테이너 설정 */
-
-.container {
+/* Container Setup */
+.email-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0px;
+  padding: 80px 20px;
+  width: 100%;
 }
 
-.form-container {
+/* Form Container */
+.email-form-container {
   display: flex;
-  flex-direction: column; /* 각 항목을 세로로 나열 */
-  gap: 20px; /* 항목 사이에 간격 */
-  border: 1px solid #d4d2e3; /* 테두리 설정 */
-  border-radius: 24px; /* 테두리 둥글게 */
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #d4d2e3;
+  border-radius: 24px;
   align-items: flex-start;
   justify-content: center;
-  height: 60vh; /* 화면의 50% 높이 */
-  padding: 20px 60px; /* 내부 여백 추가 */
-  box-sizing: border-box; /* padding 포함하여 크기 계산 */
+  padding: 60px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 500px; /* Maximum width to keep the form from getting too wide */
+  margin: 0 auto; /* Center the form */
 }
 
-/* 폼 항목(각 라벨, 입력, 버튼)을 가로로 나열 */
-.form-row {
+/* Form Row (Label + Input) */
+.email-form-row {
   display: flex;
-  flex-direction: row; /* 각 항목을 가로로 나열 */
-  gap: 20px; /* 항목 사이에 간격 */
+  flex-direction: column; /* Stack label and input vertically by default */
+  gap: 10px;
+  width: 100%;
 }
 
-/* 각 항목 설정 */
+/* Individual Form Item */
 .form-item {
   display: flex;
-  align-items: center; /* 텍스트와 입력 필드를 세로로 정렬 */
-  gap: 10px; /* 항목 사이에 간격 */
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
-/* 레이블 스타일 */
+/* Label Styling */
 label {
   font-size: 14px;
-  color: #42adfb; /* 레이블 색상 설정 */
-  width: 70px;
+  color: #42adfb;
+  width: 100%; /* Ensure label takes full width */
+  max-width: 120px; /* Limit width of the label */
+  white-space: nowrap;
 }
 
-/* 입력 필드 스타일 */
-.input2 {
-  padding: 5px;
+/* Input Field Styling */
+.email-login-input {
+  padding: 10px;
   font-size: 14px;
-  width: 200px; /* 너비를 지정하여 균일하게 보이도록 */
-  border: 1px solid #ccc; /* 입력 필드의 테두리 */
-  border-radius: 4px; /* 입력 필드 테두리 둥글게 */
+  width: 100%; /* Make input field take up full width */
+  max-width: 400px; /* Set maximum width for input */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Prevent padding from affecting width */
 }
 
-/* 버튼 스타일 */
-.button2 {
-  padding: 5px 10px;
-  font-size: 14px;
+/* Button Styling */
+.email-login-button {
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  border: 1px solid #42adfb; /* 버튼 테두리 색상 */
-  border-radius: 4px; /* 버튼 둥글게 */
-  background-color: #fff; /* 버튼 배경색 */
-  color: #42adfb; /* 버튼 텍스트 색상 */
+  border: 1px solid #42adfb;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #42adfb;
+  width: 100%; /* Make buttons responsive */
+  max-width: 400px; /* Ensure the button doesn't stretch too wide */
+  box-sizing: border-box;
 }
 
-/* 버튼 호버 효과 */
-.button2:hover {
-  background-color: #42adfb; /* 버튼 배경 색상 변경 */
-  color: white; /* 버튼 텍스트 색상 변경 */
+/* Button Hover Effect */
+.email-login-button:hover {
+  background-color: #42adfb;
+  color: white;
 }
 
+/* Heading Styling */
 h1 {
   font-size: 24px;
   color: #5d5a88;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
+/* Special Button (Right-aligned) */
 .special-button {
-  margin-left: auto; /* 오른쪽 정렬 */
+  margin-left: auto;
   margin-right: 0;
 }
 
+/* Icon Styling */
 .mail-icon {
-  transition: fill 1s ease; /* 색상 변화가 부드럽게 전환되도록 설정 */
-}
-
-.mail-icon {
+  transition: fill 1s ease;
   margin-right: 5px;
 }
 
+/* Hover Effect for Special Button */
 .special-button:hover path {
   fill: #fff;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and below (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .email-form-container {
+    max-width: 300px;
+  }
+
+  .input2 {
+    width: 100%; /* Allow inputs to take up more space */
+    padding: 12px; /* Add more padding for better tap targets */
+  }
+
+  .email-login-button {
+    width: 100%; /* Buttons should also take up more space */
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 20px; /* Smaller heading font size for mobile */
+  }
+
+  label {
+    font-size: 12px; /* Further reduce label font size */
+  }
 }

@@ -21,13 +21,10 @@
   min-width: 280px;
 }
 
-
-
-
 /* 이미지 스타일 */
 .PostsCard img {
   width: 100%;
-  height: auto;
+  height: 200px;
   border-radius: 24px;
   background-color: antiquewhite;
 }
@@ -69,13 +66,19 @@
   white-space: nowrap;
 }
 
+.viewcount {
+  filter: grayscale(100%);
+  opacity: 0.4;
+  padding-right: 5px;
+}
+
 /* 화면 크기가 1024px 이하일 때 (태블릿 화면) */
 @media (max-width: 1024px) {
   .PostsCard {
     width: 90%;
   }
 
-  .PostsCard div {
+  .PostsCard > div {
     flex: 0 0 48%;
   }
 }
@@ -86,7 +89,7 @@
     width: 100%;
   }
 
-  .PostsCard div {
+  .PostsCard > div {
     flex: 0 0 100%;
   }
 }

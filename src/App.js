@@ -18,8 +18,9 @@ import KakaoLogin from "./component/users/KakaoLogin.jsx";
 import CommentPage from "./component/commentPage/CommentPage.jsx";
 import GroupCreate from "./component/groupPage/GroupCreate.jsx";
 import GroupUpdate from "./component/groupPage/GroupUpdate.jsx";
-// ***
+import ReportPage from "./component/reportPage/ReportPage.jsx";
 import FeedPage from "./component/feed/FeedPage.jsx";
+
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/zeroequalszero" element={<AdminPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:id" element={<Post />} />
@@ -44,7 +45,10 @@ function App() {
           <Route path="/comments/:id" element={<CommentPage />} />
           <Route path="/groups/create" element={<GroupCreate />} />
           <Route path="/groups/:id/update" element={<GroupUpdate />} />
-          {/* *** */}
+          <Route
+            path="/reports/:contentType/:contentId"
+            element={<ReportPage />}
+          />
           <Route path="/groups/:groupId/feeds" element={<FeedPage />} />
         </Routes>
       </Router>

@@ -1,14 +1,12 @@
-.PostsCardList{
-}
-.PostsCardList > button{
-    margin: 20px 100px;
-    width: 101px;
-    height: 53px;
-    background-color: #0094FF;
-    border-radius: 24px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    cursor: pointer;
+.PostsCardList > button {
+  margin: 20px 100px;
+  width: 101px;
+  height: 53px;
+  background-color: #0094ff;
+  border-radius: 24px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
 }

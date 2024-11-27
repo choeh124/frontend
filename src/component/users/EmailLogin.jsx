@@ -16,10 +16,10 @@ export default function EmailLogin() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
-    fetch("http://localhost:8000/api/auth/login", {
+    await fetch("http://localhost:8000/api/auth/login", {
       method: "POST", // POST 요청
       headers: {
         "Content-Type": "application/json", // JSON 형식으로 전송
@@ -44,28 +44,30 @@ export default function EmailLogin() {
   return (
     <div>
       <Header />
-      <div className="container">
-        <div className="form-container">
+      <div className="email-container">
+        <div className="email-form-container">
           <h1>로그인</h1>
-          <div className="form-row">
+          <div className="email-form-row">
             <label>E-mail</label>
             <input
               type="text"
               id="email"
-              className="input2"
+              className="email-login-input"
               onChange={handleInputChange}
             ></input>
           </div>
-          <div className="form-row">
+          <div className="email-form-row">
             <label>비밀번호</label>
             <input
               type="password"
               id="password"
-              className="input2"
+              className="email-login-input"
               onChange={handleInputChange}
             ></input>
           </div>
-          <button onClick={handleSubmit}>전송</button>
+          <button className="email-login-button" onClick={handleSubmit}>
+            전송
+          </button>
         </div>
       </div>
       <Footer />

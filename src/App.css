@@ -40,9 +40,16 @@
 
 .main-content {
   display: flex;
-  flex: 1;
-  /* overflow: hidden; 검색 영역에만 스크롤이 생기도록 */
-  width: 1210px;
-  margin: 93px auto 68px auto;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 90px;
 }
 
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    gap: 80px;
+    padding: 30px 60px;
+  }
+}

@@ -1,43 +1,47 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.file-input {
+  border: none;
 }
 
 .PWmain-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* 요소 간 간격 */
-    flex-wrap: nowrap; /* 줄바꿈 방지 */
-    width: 100%; /* 부모 컨테이너 크기 */
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 요소 간 간격 */
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+  width: 100%; /* 부모 컨테이너 크기 */
+  box-sizing: border-box;
 }
 
-.WriteImage, .WriteText {
-    flex: 1; /* 동일한 크기 배분 */
-    max-width: 400px; /* 최대 너비 제한 */
-    min-width: 300px; /* 최소 너비 설정 */
+.WriteImage,
+.WriteText {
+  flex: 1; /* 동일한 크기 배분 */
+  max-width: 400px; /* 최대 너비 제한 */
+  min-width: 300px; /* 최소 너비 설정 */
 }
-
 
 .PostWrite h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-    .PWmain-content {
-        flex-direction: row; /* 화면 크기가 작아지면 세로 정렬 */
-        gap: 10px;
-    }
+  .PWmain-content {
+    flex-direction: row; /* 화면 크기가 작아지면 세로 정렬 */
+    gap: 10px;
+  }
 }
 
 @media (max-width: 480px) {
-    .PostWrite h2 {
-        font-size: 20px; /* 모바일에서 제목 크기 축소 */
-    }
+  .PostWrite h2 {
+    font-size: 20px; /* 모바일에서 제목 크기 축소 */
+  }
 }

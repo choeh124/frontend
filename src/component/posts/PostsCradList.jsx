@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import PostsCard from "./PostsCard";
 import Pagination from "./Pagination";
-import './PostsCardList.css'
+import "./PostsCardList.css";
 
 export default function PostsCardList() {
   const [posts, Setposts] = useState([]);
@@ -20,6 +20,7 @@ export default function PostsCardList() {
     const findTotalPages = async () => {
       const response = await axios.get(`http://127.0.0.1:8000/api/posts/count`);
       const data = response.data;
+      console.log(data);
       settotalPages(data.count);
     };
     findPost();
@@ -28,10 +29,13 @@ export default function PostsCardList() {
 
   return (
     <div className="PostsCardList">
-      <button onClick={()=>{
-        window.location.href = `post/write`
-      }}
-      >글쓰기</button>
+      <button
+        onClick={() => {
+          window.location.href = `post/write`;
+        }}
+      >
+        글쓰기
+      </button>
       <PostsCard posts={posts}></PostsCard>
       <Pagination
         currentPage={currentPage}

@@ -1,46 +1,157 @@
-header{
-    padding: 0 24px;
-    border-bottom: solid 1px #E2E8F0;
+/* Existing styles */
+header {
+  padding: 0 24px;
+  border-bottom: solid 1px #e2e8f0;
+  background-color: #fff;
 }
 
-nav{
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 20px 0;
+}
+
+h1 {
+  font-size: 24px;
+  color: #0094ff;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+}
+
+h1:hover {
+  color: #007acc;
+}
+
+/* Buttons Styling */
+.buttonBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.buttonBox button {
+  background-color: white;
+  border: none;
+  color: #0094ff;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttonBox button.blue {
+  background-color: #0094ff;
+  color: white;
+  border-color: #0094ff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttonBox button:hover {
+  background-color: #f0faff;
+  border-color: #007acc;
+}
+
+.buttonBox button.blue:hover {
+  background-color: #007acc;
+}
+
+/* Hamburger Icon Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 30px;
+  height: 4px;
+  background-color: #0094ff;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover div {
+  background-color: #007acc;
+}
+
+/* Hamburger Menu Styles */
+.navMenu {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hamburger-buttonBox {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 24px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 14px;
+  width: 250px;
+  z-index: 99;
+}
+
+.navMenu.active,
+.hamburger-buttonBox.active {
+  display: flex;
+}
+
+/* For Mobile Screens */
+@media screen and (max-width: 768px) {
+  .buttonBox {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
+    flex-direction: column; /* Hide main buttons on small screens */
+  }
 
-.buttonBox{
+  .hamburger {
+    display: flex; /* Show hamburger menu */
+  }
+
+  .navMenu {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttonBox button{
-
+    position: absolute;
+    top: 80px;
+    right: 24px;
     background-color: white;
-    border: none;
-    color: #0094FF;
-    padding: 8px 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-right: 16px;
-    cursor: pointer;
-}
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    gap: 14px;
+    width: 250px;
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+  }
 
-.buttonBox button.blue{
-    background-color: #0094FF;
-    color: white;
-    padding: 12px 12px;
-    border-radius: 8px;
-    margin-right: 0px;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap:10px;
-}
+  .buttonBox button {
+    width: 250px;
+    border: solid 2px #0094ff;
+  }
 
+  .navMenu.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

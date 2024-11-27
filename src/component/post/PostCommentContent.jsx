@@ -1,19 +1,22 @@
 // import WriteComment from "./commentsidebar/WriteComment";
 // import CommentList from "./commentsidebar/CommentList";
-import './PostCommentContent.css'
-import './commentsidebar/WriteComment.css'
-import './commentsidebar/CommentList.css'
+import "./PostCommentContent.css";
+import "./commentsidebar/WriteComment.css";
+import "./commentsidebar/CommentList.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-
 export default function PostCommentContent() {
-  const { id: postId } = useParams(); // id:postid 유저아이디/// id 댓글 아이디
-  const authorization = window.sessionStorage.getItem("Authorization")
 
-  const [comments, setComments] = useState([]);//댓글목록 상태
+  const { id: postId } = useParams();
+  // id:postid 유저아이디
+  // id 댓글 아이디
+  const authorization = window.sessionStorage.getItem("Authorization");
+
   const [content, setContent] = useState(""); //댓글입력 상태
+  const [comments, setComments] = useState([]); //댓글목록 상태
+
 
   const [editingCommentId, setEditingCommentId] = useState(null); // 수정 중인 댓글 ID
   const [editingContent, setEditingContent] = useState(""); // 수정 중인 댓글 내용
@@ -24,15 +27,18 @@ export default function PostCommentContent() {
     if (!content) {
       alert("댓글 내용을 입력해주세요."); // 빈 댓글 방지
       return;
-    };
+
+    }
 
     try {
       const commentwite = async () => {
-        const response = await axios.post(`http://localhost:8000/api/posts/${postId}/comments`,
+        const response = await axios.post(
+          `http://localhost:8000/api/posts/${postId}/comments`,
           { content },
           {
             headers: {
-              Authorization: authorization
+              Authorization: authorization,
+
             },
           }
         );
@@ -40,30 +46,28 @@ export default function PostCommentContent() {
         // console.log("작성된 댓글:",data);
       };
 
-      setComments([...comments]);;
-      commentwite();
-    } catch (error) { };
 
-  }
+      setComments([...comments]);
+      commentwite();
+    } catch (error) {}
+  };
+
 
   //===댓글 목록===
   useEffect(() => {
     const findComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/posts/${postId}/comments`, {
-        })
+
+        const response = await axios.get(
+          `http://localhost:8000/api/posts/${postId}/comments`,
+          {}
+        );
         setComments(response.data);
-      } catch (error) { };
+      } catch (error) {}
+
     };
     findComments();
   }, [content]);
-
-
-  // 댓글 수정 시작
-  const startEditing = (id, currentContent) => {
-    setEditingCommentId(id);
-    setEditingContent(currentContent);
-  };
 
 
   // 댓글 수정 저장
@@ -81,11 +85,15 @@ export default function PostCommentContent() {
 
       setComments(
         comments.map((comment) =>
-          comment.id === id ? { ...comment, content: response.data.content } : comment
+
+          comment.id === id
+            ? { ...comment, content: response.data.content }
+            : comment
         )
       );
       setEditingCommentId(null); // 수정 모드 종료
-    } catch (error) { }
+    } catch (error) {}
+
   };
 
   // 댓글 수정 취소
@@ -95,24 +103,8 @@ export default function PostCommentContent() {
   };
 
 
-
-
-
-
-
   return (
     <div className="PostCommentContent">
-
-      {/* ====뒤로가기버튼==== */}
-      <button
-        onClick={() => {
-          window.location.href = `/posts`;
-        }}
-      >
-        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M21.75 7.25L7.25 21.75M7.25 7.25L21.75 21.75" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
 
       {/* ====댓글쓰기==== */}
       <div className="WriteContent">
@@ -132,8 +124,10 @@ export default function PostCommentContent() {
         {comments.map((comm) => {
           const { content, nickname, createdAt } = comm;
           return (
-            <div key={comm.id} className='CommentListContent'>
-              <div className='CLCdetail'>
+
+            <div key={comm.id} className="CommentListContent">
+              <div className="CLCdetail">
+
                 {editingCommentId === comm.id ? (
                   <div>
                     <input
@@ -148,39 +142,56 @@ export default function PostCommentContent() {
                     <h3>{content}</h3>
                     <p>{nickname}</p>
                     <p>{createdAt.split("T")[0]}</p>
+
+                    <div className="CLCbutton">
+                      <button
+                        className="CLCReportComment"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = `http://127.0.0.1:3000/reports/comments/${comm.id}`;
+                        }}
+                      >
+                        신고
+                      </button>
+
+                      {/* 댓글 수정 */}
+                      {editingCommentId !== comm.id && (
+                        <button onClick={() => startEditing(comm.id, content)}>
+                          수정
+                        </button>
+                      )}
+
+                      {/* =====댓글삭제 */}
+                      <button
+                        onClick={async () => {
+                          if (window.confirm("댓글을 삭제하시겠습니까?")) {
+                            try {
+                              await axios.delete(
+                                `http://localhost:8000/api/posts/${postId}/comments/${comm.id}`,
+                                {
+                                  headers: {
+                                    Authorization: authorization,
+                                  },
+                                }
+                              );
+                              setComments(
+                                comments.filter(
+                                  (comment) => comment.id !== comm.id
+                                )
+                              );
+                            } catch (error) {}
+                          }
+                        }}
+                      >
+                        삭제
+                      </button>
+                    </div>
                   </>
                 )}
               </div>
-              <div className='CLCbutton'>
-                <button className='CLCReportComment'>
-                  신고
-                </button>
-
-                {/* 댓글 수정 */}
-                {editingCommentId !== comm.id && (
-                  <button onClick={() => startEditing(comm.id, content)}>수정</button>
-                )}
-
-
-                {/* =====댓글삭제 */}
-                <button
-                  onClick={async () => {
-                    if (window.confirm("댓글을 삭제하시겠습니까?")) {
-                      try {
-                        await axios.delete(`http://localhost:8000/api/posts/${postId}/comments/${comm.id}`, {
-                          headers: {
-                            Authorization: authorization
-                          },
-                        });
-                        setComments(comments.filter((comment) => comment.id !== comm.id));
-                      } catch (error) { }
-                    }
-                  }}
-                >삭제</button>
-              </div>
             </div>
+          );
 
-          )
         })}
       </div>
     </div>
