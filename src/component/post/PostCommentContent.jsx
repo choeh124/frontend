@@ -12,8 +12,8 @@ export default function PostCommentContent() {
   const { id: postId } = useParams(); // id:postid 유저아이디/// id 댓글 아이디
   const authorization = window.sessionStorage.getItem("Authorization")
 
-  const [content, setContent] = useState(""); //댓글입력 상태
   const [comments, setComments] = useState([]);//댓글목록 상태
+  const [content, setContent] = useState(""); //댓글입력 상태
 
   const [editingCommentId, setEditingCommentId] = useState(null); // 수정 중인 댓글 ID
   const [editingContent, setEditingContent] = useState(""); // 수정 중인 댓글 내용
