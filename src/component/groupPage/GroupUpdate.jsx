@@ -65,7 +65,7 @@ export default function GroupUpdate() {
         return response.json();
       })
       .then((data) => {
-        window.location.href = "/group";
+        window.location.href = "/groups";
       })
       .catch((error) => {});
   };
