@@ -19,14 +19,17 @@ export default function GroupCreate() {
   const handleSubmit = (e) => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
-    fetch("http://localhost:8000/api/groups", {
-      method: "POST", // POST 요청
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-      body: JSON.stringify({ groupName, description }),
-    })
+    fetch(
+      "https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/groups",
+      {
+        method: "POST", // POST 요청
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({ groupName, description }),
+      }
+    )
       .then((response) => {
         if (response.ok) {
           alert("그룹생성 완료되었습니다.");

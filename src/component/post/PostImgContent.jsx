@@ -48,7 +48,7 @@ export default function PostImgContent({ data }) {
             if (window.confirm("정말로 삭제하시겠습니까?")) {
               try {
                 await axios.delete(
-                  `http://localhost:8000/api/posts/${postId}`,
+                  `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/posts/${postId}`,
                   {
                     headers: {
                       Authorization: authorization,
@@ -78,5 +78,5 @@ export default function PostImgContent({ data }) {
   );
 }
 
-// localhost:8000/api/posts/a5f97b4c-668f-47d3-96b7-4825df015e5e
-// http://127.0.0.1:8000/posts/${postId}
+// https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/posts/a5f97b4c-668f-47d3-96b7-4825df015e5e
+// https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/posts/${postId}

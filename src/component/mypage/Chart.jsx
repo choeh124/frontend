@@ -35,7 +35,7 @@ export default function Chart() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/statistics/category",
+          "https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/statistics/category",
           {
             headers: {
               Authorization: window.sessionStorage.getItem("Authorization"),
@@ -50,8 +50,6 @@ export default function Chart() {
           labels.push(item.category);
           datas.push(Number(item.count)); // 데이터를 숫자로 변환
         });
-
-   
 
         // 차트 데이터를 설정
         setData({
@@ -68,7 +66,6 @@ export default function Chart() {
           ],
         });
       } catch (error) {
-
       } finally {
         setIsLoading(false); // 로딩 상태 종료
       }

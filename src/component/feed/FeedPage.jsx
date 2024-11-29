@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Pagination from "../posts/Pagination";
 
 // http://localhost:3000/groups/a78d9fc6-759a-4056-ab7e-42f8278ef76c/feeds
+// http://127.0.0.1:8000/api/groups/${groupId}/feeds?page=${currentPage}
 
 export default function FeedPage() {
   const authorization = window.sessionStorage.getItem("Authorization");
@@ -65,7 +66,7 @@ export default function FeedPage() {
         }
       };
       feedContentWrite();
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // 댓글 수정 시작
@@ -93,7 +94,7 @@ export default function FeedPage() {
         )
       );
       setEditingContentId(null); // 수정 모드 종료
-    } catch (error) {}
+    } catch (error) { }
   };
 
   // 댓글 수정 취소
@@ -131,10 +132,10 @@ export default function FeedPage() {
             {feedlist.map((feed) => {
               return (
                 <div key={feed.id} className="FeedListContent">
-                  <div className="FeedDetail">
+                  <div className="FeedChange">
                     {/* 피드수정버튼 */}
                     {editingContentId === feed.id ? (
-                      <div>
+                      <div className="CFeedinput">
                         <input
                           value={editingContent}
                           onChange={(e) => setEditingContent(e.target.value)}
@@ -145,45 +146,50 @@ export default function FeedPage() {
                         <button onClick={cancelEditing}>취소</button>
                       </div>
                     ) : (
-                      <>
-                        <p>{feed.content}</p>
-                        <p>{feed.groupName}</p>
-                        <p>{feed.createdAt.split("T")[0]}</p>
-                      </>
-                    )}
-                  </div>
-                  {/* 피드수정 */}
-                  <div className="FeedButton">
-                    {editingContentId !== feed.id && (
-                      <button
-                        onClick={() => startEditing(feed.id, feed.content)}
-                      >
-                        수정
-                      </button>
-                    )}
-                    {/* 피드삭제 */}
-                    <button
-                      onClick={async () => {
-                        if (window.confirm("피드를 삭제하기겠습니까?")) {
-                          try {
-                            await axios.delete(
-                              `localhost:8000/api/groups/${groupId}/feeds/${feed.id}`,
-                              {
-                                headers: {
-                                  Authorization: authorization,
-                                },
+                      <div className="CFeeddetail">
+                        <div className="feeddetailBox">
+                          <p>{feed.content}</p>
+                          <p>{feed.groupName}</p>
+                          <p>{feed.createdAt.split("T")[0]}</p>
+                        </div>
+
+                        <div className="FeedButton">
+                          {/* 피드수정 */}
+                          {editingContentId !== feed.id && (
+                            <button
+                              onClick={() => startEditing(feed.id, feed.content)}
+                            >
+                              수정
+                            </button>
+                          )}
+                          {/* 피드삭제 */}
+                          <button
+                            onClick={async () => {
+                              if (window.confirm("피드를 삭제하기겠습니까?")) {
+                                try {
+                                  await axios.delete(
+                                    `http://127.0.0.1:8000/api/groups/${groupId}/feeds/${feed.id}`,
+                                    {
+                                      headers: {
+                                        Authorization: authorization,
+                                      },
+                                    }
+                                  );
+                                  setFeedlist(
+                                    feedlist.filter((feeds) => feeds.id !== feed.id)
+                                  );
+                                } catch (e) { }
                               }
-                            );
-                            setFeedlist(
-                              feedlist.filter((feeds) => feeds.id !== feed.id)
-                            );
-                          } catch (e) {}
-                        }
-                      }}
-                    >
-                      삭제
-                    </button>
+                            }}
+                          >
+                            삭제
+                          </button>
+
+                        </div>
+                      </div>
+                    )}
                   </div>
+
                 </div>
               );
             })}
@@ -199,7 +205,9 @@ export default function FeedPage() {
         </div>
 
         {/* 피드채팅 */}
-        <div className="FeedChating"></div>
+        <div className="FeedChating">
+          <p>채팅부분</p>
+        </div>
       </div>
 
       <Footer></Footer>

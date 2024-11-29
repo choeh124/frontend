@@ -14,12 +14,15 @@ export default function UserUpdate() {
   useEffect(() => {
     // 컴포넌트가 마운트될 때 API 호출
     const fetchData = async () => {
-      fetch("http://localhost:8000/api/users", {
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      })
+      fetch(
+        "https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/users",
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("네트워크 응답에 문제가 있습니다.");
@@ -31,9 +34,7 @@ export default function UserUpdate() {
           setBeforeNickname(data.nickname);
           setId(data.id);
         })
-        .catch((error) => {
-    
-        });
+        .catch((error) => {});
     };
 
     fetchData();
@@ -46,14 +47,17 @@ export default function UserUpdate() {
   const handleUserEditSubmit = (e) => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
-    fetch(`http://localhost:8000/api/users/${id}`, {
-      method: "PATCH", // POST 요청
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-      body: JSON.stringify({ nickname }),
-    })
+    fetch(
+      `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/users/${id}`,
+      {
+        method: "PATCH", // POST 요청
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({ nickname }),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           alert("회원 정보 수정에 실패하였습니다.");

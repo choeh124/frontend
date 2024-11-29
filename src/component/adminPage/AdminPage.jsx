@@ -14,7 +14,7 @@ export default function AdminPage() {
   useEffect(() => {
     async function fetchReports() {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/reports?page=${currentPage}`,
+        `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/reports?page=${currentPage}`,
         {
           headers: { Authorization: authorization },
         }
@@ -23,7 +23,7 @@ export default function AdminPage() {
     }
     async function fetchTotalPages() {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/reports/count",
+        "https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/reports/count",
         { headers: { Authorization: authorization } }
       );
       setTotalPages(response.data.count);
@@ -34,7 +34,7 @@ export default function AdminPage() {
 
   async function deleteContent(reportId) {
     const response = await axios.delete(
-      `http://127.0.0.1:8000/api/reports/${reportId}`,
+      `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/reports/${reportId}`,
       {
         headers: { Authorization: authorization },
       }
@@ -46,7 +46,7 @@ export default function AdminPage() {
   }
   async function deleteGroup() {
     const response = await axios.delete(
-      `http://127.0.0.1:8000/api/groups/${groupName}`,
+      `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/groups/${groupName}`,
       { headers: { Authorization: authorization } }
     );
     if (300 > response.status >= 200) {

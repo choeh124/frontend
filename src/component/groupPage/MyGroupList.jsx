@@ -7,12 +7,15 @@ export default function MyGroupList() {
   useEffect(() => {
     // 컴포넌트가 마운트될 때 API 호출
     const fetchData = async () => {
-      fetch(`http://localhost:8000/api/groups/mygroups`, {
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      })
+      fetch(
+        `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/groups/mygroups`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("네트워크 응답에 문제가 있습니다.");

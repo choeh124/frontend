@@ -16,7 +16,9 @@ const Post = () => {
     const fetchPost = async () => {
       try {
         setLoading(true); // 로딩 시작
-        const result = await axios.get(`http://127.0.0.1:8000/api/posts/${id}`);
+        const result = await axios.get(
+          `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/posts/${id}`
+        );
         setData(result.data); // 데이터 설정
       } catch (err) {
         setError(err); // 에러 설정
@@ -27,8 +29,6 @@ const Post = () => {
 
     fetchPost();
   }, [id]);
-
-
 
   if (loading) return <p>Loading...</p>; // 로딩 중 화면
   if (error) return <p>Error: {error.message}</p>; // 에러 화면

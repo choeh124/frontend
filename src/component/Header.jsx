@@ -11,7 +11,7 @@ export default function Header() {
     async function authCheck() {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/auth/check",
+          "https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/auth/check",
           {
             headers: { Authorization: authorization },
           }

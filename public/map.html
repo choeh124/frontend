@@ -106,7 +106,9 @@
         resultdrawArr = [];
         intermediatePoints = [];
         addresses = [];
-        const keyRespnose = await fetch("http://127.0.0.1:8000/api/key/gpt");
+        const keyRespnose = await fetch(
+          "https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/key/gpt"
+        );
         const keyResult = await keyRespnose.json();
         const key = keyResult.gptKey;
         const promptData = {

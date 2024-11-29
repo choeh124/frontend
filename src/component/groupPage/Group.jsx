@@ -3,13 +3,16 @@ import React from "react";
 export default function Group({ groups }) {
   const authorization = sessionStorage.getItem("Authorization");
   const handleJoinGroup = (groupId) => {
-    fetch(`http://localhost:8000/api/groups/${groupId}/members`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authorization,
-      },
-    })
+    fetch(
+      `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/groups/${groupId}/members`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authorization,
+        },
+      }
+    )
       .then((response) => {
         if (response.ok) {
           alert("그룹 가입이 완료되었습니다.");
