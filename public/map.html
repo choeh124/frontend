@@ -162,7 +162,6 @@
 
       recordButton.addEventListener("click", () => {
         if (isRecording) {
-          console.log(sttKey);
           stopRecording();
         } else {
           startRecording();
@@ -220,7 +219,7 @@
           offset += 2;
         }
 
-        return new Blob([view], { type: "audio/wav" });
+        return new Blob([buffer], { type: "audio/wav" });
       }
 
       function writeString(view, offset, string) {
