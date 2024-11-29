@@ -94,7 +94,7 @@ export default function FeedPage() {
   const saveEditing = async (id) => {
     try {
       const response = await axios.patch(
-        `http://127.0.0.1:8000/api/groups/${groupId}/feeds/${id}`,
+        `https://shortwalk-f3byftbfe4czehcg.koreacentral-01.azurewebsites.net/api/groups/${groupId}/feeds/${id}`,
         { content: editingContent },
         {
           headers: {
