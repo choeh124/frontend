@@ -220,7 +220,11 @@ export default function FeedPage() {
 
         {/* 피드채팅 */}
         <div className="FeedChating">
-          <p>채팅부분</p>
+          <div className="chating-guide">
+            <p>당신과 대화를 나누는 상대는 누군가의 소중한 금지옥엽입니다. <br />
+              융숭한 대접 부탁드립니다.</p>
+          </div>
+          <div className=""></div>
         </div>
       </div>
 
